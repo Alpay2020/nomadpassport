@@ -1,0 +1,18 @@
+{
+  "properties": [
+    {
+      "name": "de.neuefische.passportpages",
+      "type": "java.lang.String",
+      "description": "Description for de.neuefische.passportpages."
+    },
+    {
+      "name": "de.neuefische.passportpages",
+      "type": "java.lang.String",
+      "description": "Description for de.neuefische.passportpages."
+    },
+    {
+      "name": "auth.jwt.secret",
+      "type": "java.lang.String",
+      "description": "Description for auth.jwt.secret."
+    }
+  ] }
