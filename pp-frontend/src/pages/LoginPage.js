@@ -10,7 +10,7 @@ import { Grid, makeStyles } from '@material-ui/core';
 import {GithubLoginButton} from "../components/oauth/GithHubLoginButton";
 import passportTheme from "../components/theme/passportTheme";
 import {ThemeProvider} from "@material-ui/styles";
-import FacebookLoginButton from "../components/oauth/FacebookLoginButton";
+import {FacebookLoginButton} from "../components/oauth/FacebookLoginButton";
 
 const useStyles = makeStyles((theme) => ({
     gridContainer: {
