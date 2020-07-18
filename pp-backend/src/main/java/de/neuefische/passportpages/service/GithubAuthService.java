@@ -1,5 +1,6 @@
 package de.neuefische.passportpages.service;
 
+
 import de.neuefische.passportpages.config.GithubAuthConfig;
 import de.neuefische.passportpages.db.UserDb;
 import de.neuefische.passportpages.model.PassportUser;
@@ -92,7 +93,7 @@ public class GithubAuthService {
         HttpEntity entity = new HttpEntity(headers);
         ResponseEntity<GithubUserData> response = restTemplate.exchange(authConfig.getUserDataUrl(), HttpMethod.GET, entity, GithubUserData.class);
         if (response.getStatusCode() != HttpStatus.OK) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "invalid acces token");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "invalid access token");
         }
         return response.getBody();
     }

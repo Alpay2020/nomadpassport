@@ -8,6 +8,7 @@ public class GithubAuthConfig {
 
     @Value("${oauth.github.client.id}")
     private String clientId;
+
     @Value("${oauth.github.client.secret}")
     private String clientSecret;
 
