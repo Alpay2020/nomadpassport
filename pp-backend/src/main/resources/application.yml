@@ -1,6 +1,6 @@
 logging:
   level:
-    de.neuefische.projectplanning: debug
+    de.neuefische.passportpages: debug
 
 spring:
   data:
