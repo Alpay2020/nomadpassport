@@ -1,8 +1,11 @@
 package de.neuefische.passportpages.security;
 
+import de.neuefische.passportpages.model.PassportUser;
+import de.neuefische.passportpages.db.UserDb;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
@@ -14,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -21,12 +25,12 @@ import java.util.Optional;
 public class JwtAuthFilter extends OncePerRequestFilter {
 
     private final JWTUtils jwtUtils;
-    private final MongoDbUserDetailsService detailsService;
+    private final UserDb userDb;
 
     @Autowired
-    public JwtAuthFilter(JWTUtils jwtUtils, MongoDbUserDetailsService detailsService) {
+    public JwtAuthFilter(JWTUtils jwtUtils, UserDb userDb) {
         this.jwtUtils = jwtUtils;
-        this.detailsService = detailsService;
+        this.userDb = userDb;
     }
 
     @Override
@@ -38,9 +42,11 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             try {
                 String userName = jwtUtils.extractUserName(jwtToken.get());
                 log.debug("parsed username " + userName);
-                UserDetails userDetails = detailsService.loadUserByUsername(userName);
-                if (jwtUtils.validateToken(jwtToken.get(), userDetails.getUsername())) {
-                    UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                Optional<PassportUser> user = userDb.findById(userName);
+
+                if (user.isPresent() && jwtUtils.validateToken(jwtToken.get(), user.get().getUsername())) {
+                    PassportUser passportUser = user.get();
+                    UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(passportUser.getUsername(), null,  List.of(new SimpleGrantedAuthority("admin")));
                     usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpServletRequest));
                     SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
                 }
