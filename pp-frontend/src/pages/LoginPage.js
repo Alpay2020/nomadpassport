@@ -8,10 +8,14 @@ import { Redirect } from 'react-router-dom';
 import { getDecodedJWTToken, setJWTToken } from '../utils/jwt-utils';
 import { Grid, makeStyles } from '@material-ui/core';
 import {GithubLoginButton} from "../components/oauth/GithHubLoginButton";
+import passportTheme from "../components/theme/passportTheme";
+import {ThemeProvider} from "@material-ui/styles";
+import FacebookLoginButton from "../components/oauth/FacebookLoginButton";
 
 const useStyles = makeStyles((theme) => ({
     gridContainer: {
         paddingTop: theme.spacing(4),
+        // backgroundColor: "#651E38",
     },
 }));
 
@@ -42,6 +46,7 @@ function LoginPage() {
     }
 
     return (
+        <ThemeProvider theme={passportTheme}>
         <Grid
             className={classes.gridContainer}
             container
@@ -71,8 +76,12 @@ function LoginPage() {
                 <div>
                     <GithubLoginButton />
                 </div>
+                <div>
+                    <FacebookLoginButton />
+                </div>
             </Grid>
         </Grid>
+            </ThemeProvider>
     );
 }
 

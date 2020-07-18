@@ -8,6 +8,7 @@ import { UserDispatchContext } from './context/user/UserContext';
 import { getDecodedJWTToken, isJWTTokenValid } from './utils/jwt-utils';
 import GitHubCallbackPage from "./pages/GitHubCallback";
 import PassportAppBar from "./components/PassportAppBar/PassportAppBar";
+import FacebookCallbackPage from "./pages/FacebookCallback";
 
 function Navigation() {
     const dispatch = useContext(UserDispatchContext);
@@ -25,6 +26,9 @@ function Navigation() {
             </Route>
             <Route path="/oauth/github" exact>
                 <GitHubCallbackPage/>
+            </Route>
+            <Route path="/oauth/facebook" exact>
+                <FacebookCallbackPage/>
             </Route>
         </Switch>
     </BrowserRouter>;
