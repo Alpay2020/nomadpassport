@@ -15,5 +15,8 @@ public class PassportUser {
     @Id
     private String username;
     private String password;
+    private String displayName;
+    private String avatarUrl;
     private String role;
+    private UserSource source;
 }
