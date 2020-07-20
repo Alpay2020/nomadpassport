@@ -7,6 +7,9 @@ const passportTheme = createMuiTheme({
         secondary: {
             main: '#D4AF37',
         },
+        background: {
+            default: '#651E38',
+        },
     },
 });
 

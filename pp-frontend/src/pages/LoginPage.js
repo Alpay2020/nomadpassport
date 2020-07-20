@@ -15,7 +15,6 @@ import {FacebookLoginButton} from "../components/oauth/FacebookLoginButton";
 const useStyles = makeStyles((theme) => ({
     gridContainer: {
         paddingTop: theme.spacing(4),
-        // backgroundColor: "#651E38",
     },
 }));
 

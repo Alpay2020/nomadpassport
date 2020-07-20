@@ -16,8 +16,8 @@ export function GithubLoginButton() {
         color="primary"
         startIcon={<GitHubIcon />}
         onClick={() => {
-            window.location = "https://github.com/login/oauth/authorize?client_id=Iv1.05ab67c0dfbf9e3c&redirect_uri=http://localhost:3000/oauth/github"
-        }}
+            window.location = gitHubLoginUrl
+        }}//"https://github.com/login/oauth/authorize?client_id=Iv1.05ab67c0dfbf9e3c&redirect_uri=https://localhost:3000/oauth/github
     >
         Login with Github
     </Button>
