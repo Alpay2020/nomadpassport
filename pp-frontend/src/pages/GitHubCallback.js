@@ -4,6 +4,7 @@ import {performLoginWithGithub} from "../utils/auth-utils";
 import {getDecodedJWTToken, setJWTToken} from "../utils/jwt-utils";
 import {LOGIN_FAILED, LOGIN_SUCCESS} from "../context/user/UserContextProvider";
 import {UserDispatchContext} from "../context/user/UserContext";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 export default function GitHubCallbackPage() {
     const location = useLocation()
@@ -23,5 +24,6 @@ export default function GitHubCallbackPage() {
     }, [location, dispatch, history]);
     return <div>
         Login with github
+        <CircularProgress />
     </div>
 }
