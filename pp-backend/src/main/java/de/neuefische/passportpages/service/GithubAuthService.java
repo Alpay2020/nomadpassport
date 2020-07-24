@@ -48,8 +48,7 @@ public class GithubAuthService {
         PassportUser passportUser = saveUpdateUserData(userData);
 
         return jwtUtils.createToken(new HashMap<>(Map.of(
-//                "displayName", passportUser.getDisplayName()
-//                "avatarUrl", passportUser.getAvatarUrl()
+                "displayName", passportUser.getDisplayName()
         )), passportUser.getUsername());
     }
 
@@ -57,7 +56,7 @@ public class GithubAuthService {
         Optional<PassportUser> optionalUser = userDb.findById("github/" + userData.getLogin());
 
         if (optionalUser.isEmpty()) {
-            PassportUser user = new PassportUser("github/" + userData.getLogin(), null, userData.getName(), userData.getAvatar_url(), "user", UserSource.GITHUB);
+            PassportUser user = new PassportUser("github/" + userData.getLogin(), null, userData.getName(), null, "user", UserSource.GITHUB);
             userDb.save(user);
             return user;
         }
@@ -69,7 +68,7 @@ public class GithubAuthService {
         }
 
         passportUser.setDisplayName(userData.getName());
-        passportUser.setAvatarUrl(userData.getAvatar_url());
+        passportUser.setAvatarUrl(null);
         userDb.save(passportUser);
         return passportUser;
     }

@@ -49,7 +49,6 @@ public class FacebookAuthService {
 
         return jwtUtils.createToken(new HashMap<>(Map.of(
                 "displayName", passportUser.getDisplayName()
-//                "avatarUrl", passportUser.getAvatarUrl()
         )), passportUser.getUsername());
     }
 

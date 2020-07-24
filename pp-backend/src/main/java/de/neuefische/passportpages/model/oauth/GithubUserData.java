@@ -9,6 +9,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class GithubUserData {
     private String login;
-    private String avatar_url;
     private String name;
 }
