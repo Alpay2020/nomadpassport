@@ -9,6 +9,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class FacebookUserData {
     private String id;
-//    private String avatar_url;
     private String name;
 }
