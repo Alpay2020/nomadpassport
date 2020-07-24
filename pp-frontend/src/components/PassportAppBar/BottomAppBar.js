@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
@@ -44,19 +44,19 @@ const useStyles = makeStyles({
 
 export default function LabelBottomNavigation() {
     const classes = useStyles();
-    const [value, setValue] = React.useState('passport');
-    const location = useLocation();
+    const pathname = window.location.pathname;
+    const [value, setValue] = useState(pathname);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
 
     return (
-        <BottomNavigation  value={value} onChange={handleChange} className={classes.root}>
-            <BottomNavigationAction href={"/home"} label="Home" value="home" icon={<SvgIcon color={"#D4AF37"}><MdCardTravel/></SvgIcon>} />
-            <BottomNavigationAction href={"/passport"}  label="Passport" value="passport" icon={<SvgIcon color={"#D4AF37"}><RiPassportLine/></SvgIcon>} />
-            <BottomNavigationAction href={"/home"} label="Search" value="search" icon={<SvgIcon color={"#D4AF37"}><BsSearch/></SvgIcon>} />
-            <BottomNavigationAction href={"/home"} label="Add trip" value="add trip" icon={<SvgIcon color={"#D4AF37"}><AiOutlineFileAdd/></SvgIcon>} />
+        <BottomNavigation   value={value} onChange={handleChange} className={classes.root}>
+            <BottomNavigationAction  component={Link} to="/home" label="Home" value="home" icon={<SvgIcon color={"#D4AF37"}><MdCardTravel/></SvgIcon>} />
+            <BottomNavigationAction component={Link} to="/passport" label="Passport" value="passport" icon={<SvgIcon color={"#D4AF37"}><RiPassportLine/></SvgIcon>} />
+            <BottomNavigationAction  label="Search" value="search" icon={<SvgIcon color={"#D4AF37"}><BsSearch/></SvgIcon>} />
+            <BottomNavigationAction label="Add trip" value="add trip" icon={<SvgIcon color={"#D4AF37"}><AiOutlineFileAdd/></SvgIcon>} />
         </BottomNavigation>
     );
 }
