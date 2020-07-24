@@ -49,18 +49,15 @@ public class LoginController {
     public String loginWithGithub(@RequestBody GithubLoginData data){
         return githubAuthService.login(data.getCode());
     }
-
-
     @GetMapping("github/url")
     private String getGithubLoginUrl(){
         return githubAuthConfig.getLoginUrl();
     }
+
     @PostMapping("facebook")
     public String loginWithFacebook(@RequestBody FacebookLoginData data){
         return facebookAuthService.login(data.getCode());
     }
-
-
     @GetMapping("facebook/url")
     private String getFacebookLoginUrl(){
         return facebookAuthConfig.getLoginUrl();

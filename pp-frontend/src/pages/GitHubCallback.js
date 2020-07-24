@@ -17,7 +17,7 @@ export default function GitHubCallbackPage() {
             setJWTToken(data);
             const userData = getDecodedJWTToken();
             dispatch({type: LOGIN_SUCCESS, payload: userData});
-            history.push("/")
+            history.push("/home")
         }).catch(() => {
             dispatch({type: LOGIN_FAILED});
         });

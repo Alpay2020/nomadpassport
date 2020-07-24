@@ -36,7 +36,6 @@ function PassportAppBar() {
                 <Typography color={"primary"} variant="h6" className={classes.title}>
                     Passport App {userData && userData.displayName}
                 </Typography>
-                {userData && <Avatar alt="Remy Sharp" src={userData.avatarUrl} />}
                 {authStatus === 'SUCCESS' && (
                     <Button
                         color="inherit"

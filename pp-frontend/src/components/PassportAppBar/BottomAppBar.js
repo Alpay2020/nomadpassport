@@ -30,15 +30,17 @@ const useStyles = makeStyles({
         justifyContent: 'center',
         backgroundColor: '#651E38',
         color: '#c6b5b5',
+
     },
     text: {
         color: '#c6b5b5',
     },
     MuiBottomNavigationAction:{
                     color: '#D4AF37',
-
-
-
+    },
+    icon: {
+        width: '35px',
+        height: '35px',
     },
 });
 
@@ -53,10 +55,10 @@ export default function LabelBottomNavigation() {
 
     return (
         <BottomNavigation   value={value} onChange={handleChange} className={classes.root}>
-            <BottomNavigationAction  component={Link} to="/home" label="Home" value="home" icon={<SvgIcon color={"#D4AF37"}><MdCardTravel/></SvgIcon>} />
-            <BottomNavigationAction component={Link} to="/passport" label="Passport" value="passport" icon={<SvgIcon color={"#D4AF37"}><RiPassportLine/></SvgIcon>} />
-            <BottomNavigationAction  label="Search" value="search" icon={<SvgIcon color={"#D4AF37"}><BsSearch/></SvgIcon>} />
-            <BottomNavigationAction label="Add trip" value="add trip" icon={<SvgIcon color={"#D4AF37"}><AiOutlineFileAdd/></SvgIcon>} />
-        </BottomNavigation>
+            <BottomNavigationAction  component={Link} to="/home" label="Home" value="home" icon={<img alt={"luggageIcon"} className={classes.icon} src={LuggageIcon}/>} />
+            <BottomNavigationAction component={Link} to="/passport" label="Passport" value="passport" icon={<img alt={"passportIcon"} className={classes.icon} src={PassportIcon}/>} />
+            <BottomNavigationAction  label="Search" value="search" icon={<img alt={"loupeIcon"} className={classes.icon} src={LoupeIcon}/>} />
+            <BottomNavigationAction label="Add trip" value="add trip" icon={<img alt={"addIcon"} className={classes.icon} src={AddIcon}/>} />
+        </BottomNavigation> //icon={<SvgIcon color={"#D4AF37"}><BsSearch/></SvgIcon>} />
     );
 }

@@ -11,6 +11,7 @@ import PassportAppBar from "./components/PassportAppBar/PassportAppBar";
 import FacebookCallbackPage from "./pages/FacebookCallback";
 import HomePage from "./pages/HomePage";
 import PassportPage from "./pages/PassportPage";
+import PrivateRoute from "./pages/PrivateRoute";
 
 function Navigation() {
     const dispatch = useContext(UserDispatchContext);
@@ -32,12 +33,12 @@ function Navigation() {
             <Route path="/oauth/facebook" exact>
                 <FacebookCallbackPage/>
             </Route>
-            <Route path="/home" exact>
+            <PrivateRoute path="/home" exact>
                 <HomePage />
-            </Route>
-            <Route path="/passport" exact>
+            </PrivateRoute>
+            <PrivateRoute path="/passport" exact>
                 <PassportPage />
-            </Route>
+            </PrivateRoute>
         </Switch>
     </BrowserRouter>;
 }
