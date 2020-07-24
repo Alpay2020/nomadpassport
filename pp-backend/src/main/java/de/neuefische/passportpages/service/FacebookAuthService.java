@@ -1,12 +1,12 @@
 package de.neuefische.passportpages.service;
 
 
-import de.neuefische.passportpages.config.GithubAuthConfig;
+import de.neuefische.passportpages.config.FacebookAuthConfig;
 import de.neuefische.passportpages.db.UserDb;
 import de.neuefische.passportpages.model.PassportUser;
 import de.neuefische.passportpages.model.UserSource;
-import de.neuefische.passportpages.model.oauth.GithubAccessTokenResponse;
-import de.neuefische.passportpages.model.oauth.GithubUserData;
+import de.neuefische.passportpages.model.oauth.FacebookAccessTokenResponse;
+import de.neuefische.passportpages.model.oauth.FacebookUserData;
 import de.neuefische.passportpages.security.JWTUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -25,14 +25,14 @@ import java.util.Map;
 import java.util.Optional;
 
 @Service
-public class GithubAuthService {
+public class FacebookAuthService {
 
     private final UserDb userDb;
     private final JWTUtils jwtUtils;
-    private final GithubAuthConfig authConfig;
+    private final FacebookAuthConfig authConfig;
 
     @Autowired
-    public GithubAuthService(UserDb userDb, JWTUtils jwtUtils, GithubAuthConfig authConfig) {
+    public FacebookAuthService(UserDb userDb, JWTUtils jwtUtils, FacebookAuthConfig authConfig) {
         this.userDb = userDb;
         this.jwtUtils = jwtUtils;
         this.authConfig = authConfig;
@@ -40,58 +40,58 @@ public class GithubAuthService {
 
 
     public String login(String code) {
-        GithubAccessTokenResponse tokenResponse = getGithubAccessToken(code);
+        FacebookAccessTokenResponse tokenResponse = getFacebookAccessToken(code);
 
-        GithubUserData userData = getUserData(tokenResponse.getAccess_token());
+        FacebookUserData userData = getUserData(tokenResponse.getAccess_token());
 
 
         PassportUser passportUser = saveUpdateUserData(userData);
 
         return jwtUtils.createToken(new HashMap<>(Map.of(
-//                "displayName", passportUser.getDisplayName()
+                "displayName", passportUser.getDisplayName()
 //                "avatarUrl", passportUser.getAvatarUrl()
         )), passportUser.getUsername());
     }
 
-    private PassportUser saveUpdateUserData(GithubUserData userData) {
-        Optional<PassportUser> optionalUser = userDb.findById("github/" + userData.getLogin());
+    private PassportUser saveUpdateUserData(FacebookUserData userData) {
+        Optional<PassportUser> optionalUser = userDb.findById("facebook/" + userData.getId());
 
         if (optionalUser.isEmpty()) {
-            PassportUser user = new PassportUser("github/" + userData.getLogin(), null, userData.getName(), userData.getAvatar_url(), "user", UserSource.GITHUB);
+            PassportUser user = new PassportUser("facebook/" + userData.getId(), null, userData.getName(), null, "user", UserSource.FACEBOOK);
             userDb.save(user);
             return user;
         }
 
         PassportUser passportUser = optionalUser.get();
 
-        if (passportUser.getSource() != UserSource.GITHUB) {
+        if (passportUser.getSource() != UserSource.FACEBOOK) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "username already exists");
         }
 
         passportUser.setDisplayName(userData.getName());
-        passportUser.setAvatarUrl(userData.getAvatar_url());
+        passportUser.setAvatarUrl(null);
         userDb.save(passportUser);
         return passportUser;
     }
 
-    private GithubAccessTokenResponse getGithubAccessToken(String code) {
+    private FacebookAccessTokenResponse getFacebookAccessToken(String code) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
         HttpEntity entity = new HttpEntity(headers);
-        ResponseEntity<GithubAccessTokenResponse> response = restTemplate.postForEntity(authConfig.getAccessTokenUrl(code), entity, GithubAccessTokenResponse.class);
+        ResponseEntity<FacebookAccessTokenResponse> response = restTemplate.postForEntity(authConfig.getAccessTokenUrl(code), entity, FacebookAccessTokenResponse.class);
         if (response.getStatusCode() != HttpStatus.OK) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "invalid credentials for github");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "invalid credentials for facebook");
         }
         return response.getBody();
     }
 
-    private GithubUserData getUserData(String accessToken) {
+    private FacebookUserData getUserData(String accessToken) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", "token " + accessToken);
         HttpEntity entity = new HttpEntity(headers);
-        ResponseEntity<GithubUserData> response = restTemplate.exchange(authConfig.getUserDataUrl(), HttpMethod.GET, entity, GithubUserData.class);
+        ResponseEntity<FacebookUserData> response = restTemplate.exchange(authConfig.getUserDataUrl(accessToken), HttpMethod.GET, entity, FacebookUserData.class);
         if (response.getStatusCode() != HttpStatus.OK) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "invalid access token");
         }

@@ -1,9 +1,12 @@
 package de.neuefische.passportpages.controller;
 
+import de.neuefische.passportpages.config.FacebookAuthConfig;
 import de.neuefische.passportpages.config.GithubAuthConfig;
 import de.neuefische.passportpages.model.LoginData;
+import de.neuefische.passportpages.model.oauth.FacebookLoginData;
 import de.neuefische.passportpages.model.oauth.GithubLoginData;
 import de.neuefische.passportpages.security.JWTUtils;
+import de.neuefische.passportpages.service.FacebookAuthService;
 import de.neuefische.passportpages.service.GithubAuthService;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,12 +23,16 @@ public class LoginController {
     private final JWTUtils jwtUtils;
     private final GithubAuthService githubAuthService;
     private final GithubAuthConfig githubAuthConfig;
+    private final FacebookAuthService facebookAuthService;
+    private final FacebookAuthConfig facebookAuthConfig;
 
-    public LoginController(AuthenticationManager authenticationManager, JWTUtils jwtUtils, GithubAuthService githubAuthService, GithubAuthConfig githubAuthConfig) {
+    public LoginController(AuthenticationManager authenticationManager, JWTUtils jwtUtils, GithubAuthService githubAuthService, GithubAuthConfig githubAuthConfig, FacebookAuthService facebookAuthService, FacebookAuthConfig facebookAuthConfig) {
         this.authenticationManager = authenticationManager;
         this.jwtUtils = jwtUtils;
         this.githubAuthService = githubAuthService;
         this.githubAuthConfig = githubAuthConfig;
+        this.facebookAuthService = facebookAuthService;
+        this.facebookAuthConfig = facebookAuthConfig;
     }
 
     @PostMapping
@@ -47,6 +54,16 @@ public class LoginController {
     @GetMapping("github/url")
     private String getGithubLoginUrl(){
         return githubAuthConfig.getLoginUrl();
+    }
+    @PostMapping("facebook")
+    public String loginWithFacebook(@RequestBody FacebookLoginData data){
+        return facebookAuthService.login(data.getCode());
+    }
+
+
+    @GetMapping("facebook/url")
+    private String getFacebookLoginUrl(){
+        return facebookAuthConfig.getLoginUrl();
     }
 
 }

@@ -8,6 +8,9 @@ import { UserDispatchContext } from './context/user/UserContext';
 import { getDecodedJWTToken, isJWTTokenValid } from './utils/jwt-utils';
 import GitHubCallbackPage from "./pages/GitHubCallback";
 import PassportAppBar from "./components/PassportAppBar/PassportAppBar";
+import FacebookCallbackPage from "./pages/FacebookCallback";
+import HomePage from "./pages/HomePage";
+import PassportPage from "./pages/PassportPage";
 
 function Navigation() {
     const dispatch = useContext(UserDispatchContext);
@@ -26,14 +29,25 @@ function Navigation() {
             <Route path="/oauth/github" exact>
                 <GitHubCallbackPage/>
             </Route>
+            <Route path="/oauth/facebook" exact>
+                <FacebookCallbackPage/>
+            </Route>
+            <Route path="/home" exact>
+                <HomePage />
+            </Route>
+            <Route path="/passport" exact>
+                <PassportPage />
+            </Route>
         </Switch>
     </BrowserRouter>;
 }
 
 function App() {
-    return <UserContextProvider>
+    return (
+        <UserContextProvider>
             <Navigation/>
-    </UserContextProvider>
+        </UserContextProvider>
+    );
 }
 
 export default App;
