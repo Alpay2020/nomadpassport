@@ -28,4 +28,8 @@ public class TripService {
         trip.setDestinationCountry(destinationCountry);
         return tripMongoDb.save(trip);
     }
+
+    public Iterable<Trip> getAll() {
+        return tripMongoDb.findAll();
+    }
 }
