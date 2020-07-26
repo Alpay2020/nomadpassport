@@ -4,6 +4,7 @@ import de.neuefische.passportpages.model.Trip;
 import de.neuefische.passportpages.service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import javax.validation.Valid;
 
 
 @RestController
@@ -17,7 +18,7 @@ public class TripController {
         this.tripService = tripService;
     }
     @PutMapping
-    public Trip addTrip(@RequestBody Trip data){
+    public Trip addTrip(@RequestBody @Valid Trip data){
         return tripService.add(data.getDateTripStart(),data.getDateTripEnd(),data.getDestinationCountry());
     }
     @GetMapping
