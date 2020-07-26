@@ -5,8 +5,6 @@ import de.neuefische.passportpages.service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.security.Principal;
 
 @RestController
 @RequestMapping("api/trips")
@@ -25,5 +23,9 @@ public class TripController {
     @GetMapping
     public Iterable<Trip> getTrips() {
         return tripService.getAll();
+    }
+    @DeleteMapping("{id}")
+    public void deleteIdea(@PathVariable String id){
+        tripService.deleteTrip(id);
     }
 }
