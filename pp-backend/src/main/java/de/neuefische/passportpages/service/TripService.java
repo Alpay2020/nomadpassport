@@ -6,8 +6,6 @@ import de.neuefische.passportpages.utils.IdUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @Service
 public class TripService {
@@ -27,5 +25,13 @@ public class TripService {
         trip.setDateTripEnd(dateTripEnd);
         trip.setDestinationCountry(destinationCountry);
         return tripMongoDb.save(trip);
+    }
+
+    public Iterable<Trip> getAll() {
+        return tripMongoDb.findAll();
+    }
+
+    public void deleteTrip(String id) {
+        tripMongoDb.deleteById(id);
     }
 }
