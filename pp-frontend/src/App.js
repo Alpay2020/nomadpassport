@@ -12,6 +12,8 @@ import FacebookCallbackPage from "./pages/FacebookCallback";
 import HomePage from "./pages/HomePage";
 import PassportPage from "./pages/PassportPage";
 import PrivateRoute from "./pages/PrivateRoute";
+import AddTripPage from "./pages/AddTripPage";
+import TripProvider from "./context/trip/TripContextProvider";
 
 function Navigation() {
     const dispatch = useContext(UserDispatchContext);
@@ -39,6 +41,9 @@ function Navigation() {
             <PrivateRoute path="/passport" exact>
                 <PassportPage />
             </PrivateRoute>
+            <PrivateRoute path="/addtrip" exact>
+                <AddTripPage />
+            </PrivateRoute>
         </Switch>
     </BrowserRouter>;
 }
@@ -46,7 +51,9 @@ function Navigation() {
 function App() {
     return (
         <UserContextProvider>
+            <TripProvider>
             <Navigation/>
+            </TripProvider>
         </UserContextProvider>
     );
 }

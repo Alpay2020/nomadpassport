@@ -18,10 +18,11 @@ import {ThemeProvider} from "@material-ui/styles";
 const useStyles = makeStyles(() => ({
     title: {
         flexGrow: 1,
+        fontFamily: "DomaineDisplay, Georgia, serif;"
     },
     appBar: {
         width: '100%',
-        position: 'absolute',
+
 
     }
 }));
@@ -34,7 +35,7 @@ function PassportAppBar() {
         <AppBar className={classes.appBar} color={"secondary"} position="static">
             <Toolbar>
                 <Typography color={"primary"} variant="h6" className={classes.title}>
-                    Passport App {userData && userData.displayName}
+                    NomadPassport • {userData && userData.displayName}
                 </Typography>
                 {authStatus === 'SUCCESS' && (
                     <Button
