@@ -71,8 +71,8 @@ public class TripControllerTest {
         //GIVEN
         String token = loginUser();
         String url = "http://localhost:" + port + "/api/trips";
-        tripMongoDb.save(new Trip("1","18-09-2020", "20-09-2020", "country1"));
-        tripMongoDb.save(new Trip("2","09-10-2020", "18-10-2020", "country2"));
+        tripMongoDb.save(new Trip("1","2020-9-06", "2020-9-20", "country1"));
+        tripMongoDb.save(new Trip("2","9-10-2020", "18-10-2020", "country2"));
 
 
         //WHEN

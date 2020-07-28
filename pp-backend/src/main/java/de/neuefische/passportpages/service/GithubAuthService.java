@@ -48,7 +48,7 @@ public class GithubAuthService {
         PassportUser passportUser = saveUpdateUserData(userData);
 
         return jwtUtils.createToken(new HashMap<>(Map.of(
-                "displayName", passportUser.getDisplayName()
+                "displayName", passportUser.getDisplayName() == null ? "": passportUser.getDisplayName()
         )), passportUser.getUsername());
     }
 
