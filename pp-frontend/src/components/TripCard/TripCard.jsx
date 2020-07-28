@@ -27,13 +27,11 @@ function TripCard({ trip }) {
         removeTrip(dispatch, trip.id);
     }
     const classes = useStyles();
-    const history = useHistory();
 
     return (
         <Grid item xs={10} sm={6} lg={3}>
             <Card
                 className={classes.root}
-                // onClick={() => history.push(`/trip/${trip.id}`)}
             >
                 <CardContent>
                     <Typography variant="body1" component="p">
