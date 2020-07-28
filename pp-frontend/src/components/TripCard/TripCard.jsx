@@ -28,7 +28,24 @@ function TripCard({ trip }) {
     }
     const classes = useStyles();
     const history = useHistory();
-    return
+
+    return (
+        <Grid item xs={10} sm={6} lg={3}>
+            <Card
+                className={classes.root}
+                onClick={() => history.push(`/trip/${trip.id}`)}
+            >
+                <CardContent>
+                    <Typography variant="body1" component="p">
+                        {trip.dateTripStart} - {trip.dateTripEnd} : {trip.destinationCountry}
+                    </Typography>
+                    <IconButton onClick={handleDelete}>
+                        <DeleteIcon />
+                    </IconButton>
+                </CardContent>
+            </Card>
+        </Grid>
+    );
 }
 
 export default TripCard;
