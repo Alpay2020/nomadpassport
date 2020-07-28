@@ -33,7 +33,7 @@ function TripCard({ trip }) {
         <Grid item xs={10} sm={6} lg={3}>
             <Card
                 className={classes.root}
-                onClick={() => history.push(`/trip/${trip.id}`)}
+                // onClick={() => history.push(`/trip/${trip.id}`)}
             >
                 <CardContent>
                     <Typography variant="body1" component="p">
