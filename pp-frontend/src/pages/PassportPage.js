@@ -11,8 +11,6 @@ import { Grid } from '@material-ui/core';
 
 export default function PassportPage() {
 
-        const [showAddTripDialog, setShowAddTripDialog] = useState(false);
-
         const { trips, fetchStatus } = useContext(TripStateContext);
         const dispatch = useContext(TripDispatchContext);
 
@@ -22,11 +20,24 @@ export default function PassportPage() {
             }
         }, [fetchStatus, dispatch]);
 
-        return(
-        <div>
-            <TripCard />
-
+    return (
+        <>
+            {fetchStatus === 'PENDING' && <CircularProgress />}
+            {fetchStatus === 'FAILED' && (
+                <Typography variant="body1" color="error" component="p">
+                    Fetch Trips failed
+                </Typography>
+            )}
+            <Grid container justify={'center'}>
+                {trips.map((trip) => (
+                    <TripCard
+                        key={trip.id}
+                        trip={trip}
+                        onDeleteSuccess={() => console.log('delete')}
+                    />
+                ))}
+            </Grid>
             <BottomAppBar />
-        </div>
-    )
+        </>
+    );
 }
