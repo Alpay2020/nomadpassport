@@ -14,6 +14,10 @@ import PassportPage from "./pages/PassportPage";
 import PrivateRoute from "./pages/PrivateRoute";
 import AddTripPage from "./pages/AddTripPage";
 import TripProvider from "./context/trip/TripContextProvider";
+import BottomAppBar from "./components/PassportAppBar/BottomAppBar";
+import passportTheme from "./components/theme/passportTheme";
+import {MuiThemeProvider} from "@material-ui/core";
+import SearchPage from "./pages/SearchPage";
 
 function Navigation() {
     const dispatch = useContext(UserDispatchContext);
@@ -37,12 +41,19 @@ function Navigation() {
             </Route>
             <PrivateRoute path="/home" exact>
                 <HomePage />
+                <BottomAppBar />
             </PrivateRoute>
             <PrivateRoute path="/passport" exact>
                 <PassportPage />
+                <BottomAppBar />
             </PrivateRoute>
+        <PrivateRoute path="/search" exact>
+            <SearchPage />
+            <BottomAppBar />
+        </PrivateRoute>
             <PrivateRoute path="/addtrip" exact>
                 <AddTripPage />
+                <BottomAppBar />
             </PrivateRoute>
         </Switch>
     </BrowserRouter>;
@@ -50,11 +61,13 @@ function Navigation() {
 
 function App() {
     return (
+        <MuiThemeProvider theme={passportTheme}>
         <UserContextProvider>
             <TripProvider>
             <Navigation/>
             </TripProvider>
         </UserContextProvider>
+    </MuiThemeProvider>
     );
 }
 

@@ -37,7 +37,6 @@ export default function PassportPage() {
                     />
                 ))}
             </Grid>
-            <BottomAppBar />
         </>
     );
 }

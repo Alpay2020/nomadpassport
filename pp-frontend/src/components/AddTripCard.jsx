@@ -45,7 +45,16 @@ const useStyles = makeStyles({
     selectEmpty: {
         marginTop: 2,
     },
+    button: {
+        backgroundColor: '#e2e6e9',
+        boxShadow:  '9px 9px 18px #c0c4c6, -9px -9px 18px #ffffff',
+        color: '#c6b5b5',
+        borderRadius: '56px',
+        background: 'linear-gradient(145deg, #6c203c, #5b1b32)',
+    },
 });
+
+
 
 export default function AddTripCard() {
     const classes = useStyles();
@@ -328,6 +337,7 @@ export default function AddTripCard() {
                     disabled={destinationCountry.length < 5}
                     onClick={handleSubmit}
                     color="primary"
+                    className={classes.button}
                     >
                     Add
             </Button>

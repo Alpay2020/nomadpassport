@@ -8,9 +8,7 @@ import './index.css'
 
 ReactDOM.render(
   <React.StrictMode>
-      <MuiThemeProvider theme={passportTheme}>
-        <App />
-      </MuiThemeProvider>
+      <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

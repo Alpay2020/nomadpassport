@@ -12,7 +12,8 @@ import { LOGOUT } from '../../context/user/UserContextProvider';
 import { removeJWTToken } from '../../utils/jwt-utils';
 import Avatar from "@material-ui/core/Avatar";
 import passportTheme from "../theme/passportTheme";
-import {ThemeProvider} from "@material-ui/styles";
+import {MuiThemeProvider} from "@material-ui/core";
+import {BrowserRouter} from "react-router-dom";
 
 
 const useStyles = makeStyles(() => ({
