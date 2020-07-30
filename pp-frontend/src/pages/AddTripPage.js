@@ -4,6 +4,9 @@ import {Box} from "@material-ui/core";
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchAllTrips } from '../utils/trip-utils';
+import makeStyles from "@material-ui/core/styles/makeStyles";
+
+
 
 export default function AddTripPage() {
 
@@ -21,7 +24,6 @@ export default function AddTripPage() {
         <Box>
             <AddTripCard/>
         </Box>
-    <BottomAppBar/>
         </div>
 )
 }
