@@ -57,7 +57,7 @@ export default function LabelBottomNavigation() {
         <BottomNavigation   value={value} onChange={handleChange} className={classes.root}>
             <BottomNavigationAction  component={Link} to="/home" label="Home" value="home" icon={<img alt={"luggageIcon"} className={classes.icon} src={LuggageIcon}/>} />
             <BottomNavigationAction component={Link} to="/passport" label="Passport" value="passport" icon={<img alt={"passportIcon"} className={classes.icon} src={PassportIcon}/>} />
-            <BottomNavigationAction  label="Search" value="search" icon={<img alt={"loupeIcon"} className={classes.icon} src={LoupeIcon}/>} />
+            <BottomNavigationAction  component={Link} to="/search" label="Search" value="search" icon={<img alt={"loupeIcon"} className={classes.icon} src={LoupeIcon}/>} />
             <BottomNavigationAction component={Link} to="/addtrip" label="Add trip" value="add trip" icon={<img alt={"addIcon"} className={classes.icon} src={AddIcon}/>} />
         </BottomNavigation> //icon={<SvgIcon color={"#D4AF37"}><BsSearch/></SvgIcon>} />
     );

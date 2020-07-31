@@ -18,6 +18,7 @@ import BottomAppBar from "./components/PassportAppBar/BottomAppBar";
 import passportTheme from "./components/theme/passportTheme";
 import {MuiThemeProvider} from "@material-ui/core";
 import SearchPage from "./pages/SearchPage";
+import VisaInfoContextProvider from "./context/visaInfo/VisaInfoContextProvider";
 
 function Navigation() {
     const dispatch = useContext(UserDispatchContext);
@@ -64,7 +65,9 @@ function App() {
         <MuiThemeProvider theme={passportTheme}>
         <UserContextProvider>
             <TripProvider>
+                <VisaInfoContextProvider>
             <Navigation/>
+                </VisaInfoContextProvider>
             </TripProvider>
         </UserContextProvider>
     </MuiThemeProvider>

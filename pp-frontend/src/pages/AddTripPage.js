@@ -1,5 +1,5 @@
 import BottomAppBar from "../components/PassportAppBar/BottomAppBar";
-import AddTripCard from "../components/AddTripCard";
+import AddTripCard from "../components/TripCard/AddTripCard";
 import {Box} from "@material-ui/core";
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';

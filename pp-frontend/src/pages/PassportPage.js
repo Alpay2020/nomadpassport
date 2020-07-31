@@ -2,7 +2,7 @@ import BottomAppBar from "../components/PassportAppBar/BottomAppBar";
 import TripCard from "../components/TripCard/TripCard";
 import React, { useContext, useEffect, useState } from 'react';
 import Button from '@material-ui/core/Button';
-import AddTripCard from '../components/AddTripCard';
+import AddTripCard from '../components/TripCard/AddTripCard';
 import {TripDispatchContext, TripStateContext,} from '../context/trip/TripContext';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';

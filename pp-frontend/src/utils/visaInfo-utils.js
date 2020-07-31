@@ -1,8 +1,8 @@
 import {getJWTToken} from "./jwt-utils";
 
-export async function fetchVisaInfo(destination) {
+export async function fetchVisaInfoById(id) {
     const token = getJWTToken();
-    const response = await fetch(`/api/visainfo/${destination}`, {
+    const response = await fetch(`/api/visainfo/${id}`, {
         method: 'GET',
         headers: {
             Authorization: `Bearer ${token}`,
