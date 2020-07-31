@@ -16,7 +16,8 @@ public class VisaInfoService {
     public VisaInfoService(VisaInfoMongoDb visaInfoMongoDb) {
         this.visaInfoMongoDb = visaInfoMongoDb;
     }
-    public Optional<VisaInfo> getVisaInfo(String destination) {
-        return visaInfoMongoDb.findById(destination);
+
+    public Optional<VisaInfo> getVisaInfo(String id) {
+        return visaInfoMongoDb.findById(id);
     }
 }

@@ -2,6 +2,7 @@ package de.neuefische.passportpages.controller;
 
 import de.neuefische.passportpages.model.VisaInfo;
 import de.neuefische.passportpages.service.VisaInfoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,15 +18,17 @@ public class VisaInfoController {
 
     private final VisaInfoService visaInfoService;
 
+    @Autowired
     public VisaInfoController(VisaInfoService visaInfoService) {
         this.visaInfoService = visaInfoService;
     }
-    @GetMapping("{destination}")
-    public VisaInfo getVisaInfoByDestination(@PathVariable String destination) {
-        Optional<VisaInfo> visaInfoOptional = visaInfoService.getVisaInfo(destination);
+
+    @GetMapping("{id}")
+    public VisaInfo getVisaInfoByDestination(@PathVariable String id) {
+        Optional<VisaInfo> visaInfoOptional = visaInfoService.getVisaInfo(id);
         if (visaInfoOptional.isPresent()) {
             return visaInfoOptional.get();
         }
-        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "visa information about " + destination + " does not exist");
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "visa information about destination with ID " + id + " does not exist");
     }
 }
