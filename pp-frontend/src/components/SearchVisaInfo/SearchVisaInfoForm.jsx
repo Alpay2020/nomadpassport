@@ -22,6 +22,7 @@ const useStyles = makeStyles({
         color: '#c6b5b5',
         borderRadius: '10px',
         background: 'linear-gradient(145deg, #f2f6f9, #cbcfd2);',
+
     },
     searchButton:{
         backgroundColor: '#e2e6e9',

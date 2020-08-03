@@ -32,7 +32,7 @@ export default function HomePage() {
     <div className={classes.root}>
         <Box>
         <Card className={classes.card}>
-        <Typography variant="h6">Welcome, {userData.displayName}!</Typography>
+        <Typography variant="h4">Welcome, {userData.displayName}!</Typography>
         <Typography>Nomad Passport gives you the ability to get your destination's entry requirements with one click and helps you keeping track of your trips.</Typography>
         </Card>
         </Box>

@@ -5,7 +5,6 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { useHistory } from 'react-router-dom';
 import { TripDispatchContext } from '../../context/trip/TripContext';
 import { removeTrip } from '../../context/trip/TripActions';
 import { Grid } from '@material-ui/core';
@@ -18,7 +17,6 @@ const useStyles = makeStyles({
             backgroundColor: '#c0c4c6',
         },
         boxShadow:  '9px 9px 18px #c0c4c6, -9px -9px 18px #ffffff',
-        // color: '#c6b5b5',
         borderRadius: '10px',
         background: 'linear-gradient(145deg, #f2f6f9, #cbcfd2);',
     },
