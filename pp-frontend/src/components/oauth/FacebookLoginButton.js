@@ -15,7 +15,6 @@ export function FacebookLoginButton() {
         startIcon={<FacebookIcon />}
         onClick={() => {
             window.location = facebookLoginUrl
-            //window.location = "https://www.facebook.com/v7.0/dialog/oauth?client_id=667921943933460&redirect_uri=https://localhost:3000/oauth/facebook"
         }}
     >
         Login with Facebook

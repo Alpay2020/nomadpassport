@@ -13,10 +13,14 @@ import { Grid } from '@material-ui/core';
 const useStyles = makeStyles({
     root: {
         margin: 10,
-        backgroundColor: 'lightgray',
+        backgroundColor: '#e2e6e9',
         '&:hover': {
-            backgroundColor: 'rgb(7, 177, 77, 0.42)',
+            backgroundColor: '#c0c4c6',
         },
+        boxShadow:  '9px 9px 18px #c0c4c6, -9px -9px 18px #ffffff',
+        // color: '#c6b5b5',
+        borderRadius: '10px',
+        background: 'linear-gradient(145deg, #f2f6f9, #cbcfd2);',
     },
 });
 

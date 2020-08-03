@@ -10,10 +10,7 @@ import {
 } from '../../context/user/UserContext';
 import { LOGOUT } from '../../context/user/UserContextProvider';
 import { removeJWTToken } from '../../utils/jwt-utils';
-import Avatar from "@material-ui/core/Avatar";
-import passportTheme from "../theme/passportTheme";
-import {MuiThemeProvider} from "@material-ui/core";
-import {BrowserRouter} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 
 const useStyles = makeStyles(() => ({
@@ -40,11 +37,13 @@ function PassportAppBar() {
                 </Typography>
                 {authStatus === 'SUCCESS' && (
                     <Button
+                        component={Link} to="/login"
                         color="inherit"
                         onClick={() => {
                             dispatch({ type: LOGOUT });
                             removeJWTToken();
                         }}
+
                     >
                         Logout
                     </Button>

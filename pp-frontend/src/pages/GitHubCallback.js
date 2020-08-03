@@ -22,8 +22,8 @@ export default function GitHubCallbackPage() {
             dispatch({type: LOGIN_FAILED});
         });
     }, [location, dispatch, history]);
+
     return <div>
-        Login with github
         <CircularProgress />
     </div>
 }

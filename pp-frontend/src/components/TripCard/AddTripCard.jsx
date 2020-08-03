@@ -22,6 +22,11 @@ import Select from '@material-ui/core/Select';
 const useStyles = makeStyles({
     root: {
         minWidth: 275,
+        backgroundColor: '#e2e6e9',
+        boxShadow:  '9px 9px 18px #c0c4c6, -9px -9px 18px #ffffff',
+        // color: '#c6b5b5',
+        borderRadius: '10px',
+        background: 'linear-gradient(145deg, #f2f6f9, #cbcfd2);',
     },
     bullet: {
         display: 'inline-block',
@@ -50,7 +55,7 @@ const useStyles = makeStyles({
         boxShadow:  '9px 9px 18px #c0c4c6, -9px -9px 18px #ffffff',
         color: '#c6b5b5',
         borderRadius: '56px',
-        background: 'linear-gradient(145deg, #6c203c, #5b1b32)',
+        background: 'linear-gradient(145deg, #f2f6f9, #cbcfd2);',
     },
 });
 
@@ -336,7 +341,6 @@ export default function AddTripCard() {
                 <Button
                     disabled={destinationCountry.length < 5}
                     onClick={handleSubmit}
-                    color="primary"
                     className={classes.button}
                     >
                     Add

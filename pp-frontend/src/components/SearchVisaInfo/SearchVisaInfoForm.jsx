@@ -6,15 +6,31 @@ import MenuItem from "@material-ui/core/MenuItem";
 import {makeStyles} from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import {fetchVisaInfo} from "../../context/visaInfo/VisaInfoActions";
-import {useHistory} from "react-router-dom";
 import {VisaInfoDispatchContext, VisaInfoStateContext} from "../../context/visaInfo/VisaInfoContext";
-import {fetchVisaInfoById} from "../../utils/visaInfo-utils";
+import Card from "@material-ui/core/Card";
 
 const useStyles = makeStyles({
     formControl: {
         margin: 1,
         minWidth: 120,
     },
+    card:{
+        margin: 10,
+        paddingTop: "20px",
+        backgroundColor: '#e2e6e9',
+        boxShadow:  '9px 9px 18px #c0c4c6, -9px -9px 18px #ffffff',
+        color: '#c6b5b5',
+        borderRadius: '10px',
+        background: 'linear-gradient(145deg, #f2f6f9, #cbcfd2);',
+    },
+    searchButton:{
+        backgroundColor: '#e2e6e9',
+        boxShadow:  '9px 9px 18px #c0c4c6, -9px -9px 18px #ffffff',
+        color: '#c6b5b5',
+        borderRadius: '56px',
+        background: 'linear-gradient(145deg, #f2f6f9, #cbcfd2);',
+
+    }
 });
 
 export default function SearchVisaInfoForm() {
@@ -23,16 +39,12 @@ export default function SearchVisaInfoForm() {
     const visaInfo = useContext(VisaInfoStateContext);
     const classes = useStyles();
     const [citizenship, setCitizenship] = useState('');
-    const [destination, setDestination] = useState('');
     const [id, setId] = useState('');
 
 
 
     function handleCitizenshipChange(event) {
         setCitizenship(event.target.value);
-    }
-    function handleDestinationChange(event) {
-        setDestination(event.target.value);
     }
     function handleIdChange(event) {
         setId(event.target.value);
@@ -42,6 +54,7 @@ export default function SearchVisaInfoForm() {
         fetchVisaInfo(dispatch, id);
     }
     return (
+        <Card className={classes.card}>
         <form
         >
 
@@ -460,11 +473,12 @@ export default function SearchVisaInfoForm() {
                 disabled={id.length < 1}
                 onClick={handleSubmit}
                 color="primary"
-                className={classes.button}
+                className={classes.searchButton}
             >
                 Search
             </Button>
         </form>
+        </Card>
 
     )
 }
