@@ -12,6 +12,7 @@ export function FacebookLoginButton() {
     },[])
 
     return  <Button
+        color={"primary"}
         startIcon={<FacebookIcon />}
         onClick={() => {
             window.location = facebookLoginUrl

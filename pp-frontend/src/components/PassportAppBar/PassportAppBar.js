@@ -38,7 +38,7 @@ function PassportAppBar() {
                 {authStatus === 'SUCCESS' && (
                     <Button
                         component={Link} to="/login"
-                        color="inherit"
+                        color="primary"
                         onClick={() => {
                             dispatch({ type: LOGOUT });
                             removeJWTToken();

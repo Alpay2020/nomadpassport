@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import TextField from '@material-ui/core/TextField';
-import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
@@ -75,7 +74,6 @@ export default function AddTripCard() {
             setDateTripStart('') && setDateTripEnd('') && setDestinationCountry('');
 
         }
-        // eslint-disable-next-line
     }, [addStatus]);
 
     const dispatch = useContext(TripDispatchContext);

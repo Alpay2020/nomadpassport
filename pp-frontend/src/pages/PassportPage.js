@@ -1,5 +1,5 @@
 import TripCard from "../components/TripCard/TripCard";
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import {TripDispatchContext, TripStateContext,} from '../context/trip/TripContext';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';

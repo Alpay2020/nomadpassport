@@ -12,6 +12,7 @@ export function GithubLoginButton() {
     },[])
 
     return  <Button
+        color={"primary"}
         startIcon={<GitHubIcon />}
         onClick={() => {
             window.location = gitHubLoginUrl
