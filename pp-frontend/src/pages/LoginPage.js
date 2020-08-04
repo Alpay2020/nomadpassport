@@ -28,8 +28,8 @@ const useStyles = makeStyles({
     logo:{
         display : "flex",
         justifyContent : "center",
-        paddingBottom : "30px",
-        paddingTop : "30px",
+        paddingBottom : "100px",
+        paddingTop : "50px",
 
     }
 
