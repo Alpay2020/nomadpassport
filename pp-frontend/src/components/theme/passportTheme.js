@@ -23,9 +23,10 @@ const passportTheme = createMuiTheme({
 
             }
         },
-
-
-    }
+    },
+    typography: {
+        fontFamily: ['Fauna One', 'serif',].join(','),
+    },
 });
 
 export default passportTheme;

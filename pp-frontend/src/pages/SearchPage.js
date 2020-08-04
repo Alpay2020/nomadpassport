@@ -17,6 +17,7 @@ const useStyles = makeStyles({
     card: {
 
         margin: 10,
+        padding: "20px", //Balken muss weg, wenn kein Inhalt...
         backgroundColor: '#e2e6e9',
         '&:hover': {
             backgroundColor: '#c0c4c6',
@@ -27,7 +28,9 @@ const useStyles = makeStyles({
         background: 'linear-gradient(145deg, #f2f6f9, #cbcfd2);',
     },
     resultBox: {
-        paddingTop: "40px",
+        // justifyContent: "space-between",
+        // paddingTop: "40px",
+
     },
 });
 
@@ -54,33 +57,33 @@ export default function SearchPage() {
         <Box>
             <SearchVisaInfoForm />
         </Box>
-        <Box className={classes.resultBox}>
-            <Card className={classes.card}>
+        <Box py={3} className={classes.resultBox}>
+            {fetchStatus === 'SUCCESS' && <Card className={classes.card}>
             {visaInfo.citizenship &&
             <Typography>
-            Citizen from {visaInfo.citizenship}
+                Citizen from <span style={{fontWeight:"bold"}}>{visaInfo.citizenship}</span>
             </Typography>}
             {visaInfo.destination &&
             <Typography>
-            Traveling to {visaInfo.destination}
+            Traveling to <span style={{fontWeight:"bold"}}>{visaInfo.destination}</span>
             </Typography>}
             {visaInfo.visaType &&
             <Typography>
-            Traveling as {visaInfo.visaType}
+            Traveling as <span style={{fontWeight:"bold"}}>{visaInfo.visaType}</span>
             </Typography>}
             {visaInfo.visaFreeDay &&
             <Typography>
-            Days you can visit without a visa {visaInfo.visaFreeDay}
+            Days you can visit without a visa <span style={{fontWeight:"bold"}}>{visaInfo.visaFreeDay}</span>
             </Typography>}
             {visaInfo.visaFee &&
             <Typography>
-            Fee for visa {visaInfo.visaFee}
+            Fee for visa <span style={{fontWeight:"bold"}}>{visaInfo.visaFee}</span>
             </Typography>}
             {visaInfo.paidForDay &&
             <Typography>
-            Days you can stay with a visa {visaInfo.paidForDay}
+            Days you can stay with a visa <span style={{fontWeight:"bold"}}>{visaInfo.paidForDay}</span>
             </Typography>}
-            </Card>
+            </Card>}
         </Box>
         </div>
 

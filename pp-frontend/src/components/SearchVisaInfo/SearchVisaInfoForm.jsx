@@ -8,15 +8,20 @@ import Button from "@material-ui/core/Button";
 import {fetchVisaInfo} from "../../context/visaInfo/VisaInfoActions";
 import {VisaInfoDispatchContext, VisaInfoStateContext} from "../../context/visaInfo/VisaInfoContext";
 import Card from "@material-ui/core/Card";
+import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles({
     formControl: {
         margin: 1,
         minWidth: 120,
     },
+    flexy: {
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center"
+    },
     card:{
         margin: 10,
-        paddingTop: "20px",
         backgroundColor: '#e2e6e9',
         boxShadow:  '9px 9px 18px #c0c4c6, -9px -9px 18px #ffffff',
         color: '#c6b5b5',
@@ -26,7 +31,7 @@ const useStyles = makeStyles({
     searchButton:{
         backgroundColor: '#e2e6e9',
         boxShadow:  '9px 9px 18px #c0c4c6, -9px -9px 18px #ffffff',
-        color: '#c6b5b5',
+        color: '#242323',
         borderRadius: '56px',
         background: 'linear-gradient(145deg, #f2f6f9, #cbcfd2);',
     }
@@ -54,7 +59,7 @@ export default function SearchVisaInfoForm() {
         <Card className={classes.card}>
         <form
         >
-
+            <Box py={3} className={classes.flexy}>
             <FormControl className={classes.formControl}>
                 <InputLabel id="citizenship">Citizenship</InputLabel>
                 <Select
@@ -474,6 +479,7 @@ export default function SearchVisaInfoForm() {
             >
                 Search
             </Button>
+            </Box>
         </form>
         </Card>
 
