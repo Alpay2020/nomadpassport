@@ -9,6 +9,7 @@ import {fetchVisaInfo} from "../../context/visaInfo/VisaInfoActions";
 import {VisaInfoDispatchContext, VisaInfoStateContext} from "../../context/visaInfo/VisaInfoContext";
 import Card from "@material-ui/core/Card";
 import Box from "@material-ui/core/Box";
+import {countryList} from "./CountryList";
 
 const useStyles = makeStyles({
     formControl: {
@@ -68,8 +69,7 @@ export default function SearchVisaInfoForm() {
                     value={citizenship}
                     onChange={handleCitizenshipChange}
                 >
-                    <MenuItem value={"Afghanistan"}>Afghanistan</MenuItem>
-                    <MenuItem value={"Albania"}>Albania</MenuItem>
+                    {countryList.map((country)=><MenuItem key={country.id} value={country.label}>{country.label}</MenuItem>) }
                     <MenuItem value={"Algeria"}>Algeria</MenuItem>
                     <MenuItem value={"Andorra"}>Andorra</MenuItem>
                     <MenuItem value={"Angola"}>Angola</MenuItem>
@@ -274,8 +274,7 @@ export default function SearchVisaInfoForm() {
                     value={id}
                     onChange={handleIdChange}
                 >
-                    <MenuItem value={"1"}>Afghanistan</MenuItem>
-                    <MenuItem value={"2"}>Albania</MenuItem>
+                    {countryList.map((country)=><MenuItem key={country.id} value={country.id}>{country.label}</MenuItem>) }
                     <MenuItem value={"3"}>Algeria</MenuItem>
                     <MenuItem value={"4"}>Andorra</MenuItem>
                     <MenuItem value={"5"}>Angola</MenuItem>

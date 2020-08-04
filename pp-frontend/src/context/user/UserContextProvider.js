@@ -23,7 +23,7 @@ function reducer(state, action) {
         case LOGIN_FAILED:
             return { ...state, authStatus: 'FAILED' };
         case LOGOUT:
-            return { ...initialState };
+            return { ...initialState, authStatus: 'FAILED' };
         default:
             return state;
     }

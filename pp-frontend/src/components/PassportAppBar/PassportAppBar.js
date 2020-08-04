@@ -37,7 +37,6 @@ function PassportAppBar() {
                 </Typography>
                 {authStatus === 'SUCCESS' && (
                     <Button
-                        component={Link} to="/login"
                         color="primary"
                         onClick={() => {
                             dispatch({ type: LOGOUT });
