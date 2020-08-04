@@ -1,1 +1,0 @@
-export const countryList = [{id : "1", label :"Afghanistan"}, {id : "2", label : "Albanien"}]
