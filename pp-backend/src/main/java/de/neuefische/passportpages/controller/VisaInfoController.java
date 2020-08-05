@@ -31,4 +31,12 @@ public class VisaInfoController {
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "visa information about destination with ID " + id + " does not exist");
     }
+    @GetMapping("{id}")
+    public VisaInfo getRandomVisaInfo(@PathVariable String id) {
+        Optional<VisaInfo> visaInfoOptional = visaInfoService.getVisaInfo(id);
+        if (visaInfoOptional.isPresent()) {
+            return visaInfoOptional.get();
+        }
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "visa information about destination with random ID " + id + " does not exist");
+    }
 }

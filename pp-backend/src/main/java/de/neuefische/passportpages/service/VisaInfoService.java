@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.Random;
+
 
 @Service
 public class VisaInfoService {
@@ -20,4 +22,14 @@ public class VisaInfoService {
     public Optional<VisaInfo> getVisaInfo(String id) {
         return visaInfoMongoDb.findById(id);
     }
+
+    public Optional<VisaInfo> getRandomVisaInfo(String id){
+        Random randomVisaInfo = new Random();
+        int idResult = randomVisaInfo.nextInt(195);
+        idResult += 1;
+        id = Integer.toString(idResult);
+        return visaInfoMongoDb.findById(id);
+
+    }
+
 }
