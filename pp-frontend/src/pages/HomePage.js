@@ -4,6 +4,7 @@ import {UserDispatchContext, UserStateContext} from "../context/user/UserContext
 import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
 import Box from "@material-ui/core/Box";
+import BottomAppBar from "../components/PassportAppBar/BottomAppBar";
 
 const useStyles = makeStyles({
         root: {
@@ -25,14 +26,13 @@ const useStyles = makeStyles({
 export default function HomePage() {
     const classes = useStyles();
     const { userData } = useContext(UserStateContext);
-    const dispatch = useContext(UserDispatchContext);
 
 
     return(
     <div className={classes.root}>
         <Box>
         <Card className={classes.card}>
-        <Typography variant="h4">Welcome, {userData.displayName}!</Typography>
+        <Typography variant="h4">Welcome, {userData && userData.displayName}!</Typography>
         <Typography>Nomad Passport gives you the ability to get your destination's entry requirements with one click and helps you keep track of your trips.</Typography>
         </Card>
         </Box>
@@ -48,6 +48,7 @@ export default function HomePage() {
                 <Typography>random destination...</Typography>
             </Card>
         </Box>
+
     </div>
 
     )

@@ -6,6 +6,7 @@ import {
 } from '../context/user/UserContext';
 import { LOGOUT } from '../context/user/UserContextProvider';
 import { removeJWTToken } from '../utils/jwt-utils';
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 function PrivateRoute({ component: Component, ...rest }) {
     const { authStatus, userData } = useContext(UserStateContext);
@@ -24,15 +25,20 @@ function PrivateRoute({ component: Component, ...rest }) {
         <Route
             {...rest}
             render={(props) => {
-                if (authStatus !== 'SUCCESS') {
+
+                if (authStatus === 'FAILED') {
                     return <Redirect to={'/login'} />;
                 }
+                if (authStatus === 'SUCCESS'){
 
-                if (new Date().getTime() / 1000 >= userData.exp) {
-                    return <Redirect to={'/login'} />;
+                    if (new Date().getTime() / 1000 >= userData.exp) {
+                        return <Redirect to={'/login'} />;
+                    }
+
+                    return <Component {...props} />;
                 }
+                return <CircularProgress />
 
-                return <Component {...props} />;
             }}
         />
     );

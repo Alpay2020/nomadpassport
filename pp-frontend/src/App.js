@@ -1,7 +1,8 @@
 import React, { useContext, useEffect } from 'react';
 import LoginPage from "./pages/LoginPage";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import {BrowserRouter, Switch, Route, useLocation} from "react-router-dom";
 import UserContextProvider, {
+    LOGIN_FAILED,
     LOGIN_SUCCESS,
 } from './context/user/UserContextProvider';
 import { UserDispatchContext } from './context/user/UserContext';
@@ -22,13 +23,16 @@ import VisaInfoContextProvider from "./context/visaInfo/VisaInfoContextProvider"
 
 function Navigation() {
     const dispatch = useContext(UserDispatchContext);
+    const location = useLocation();
 
     useEffect(() => {
         if (isJWTTokenValid()) {
             dispatch({ type: LOGIN_SUCCESS, payload: getDecodedJWTToken() });
         }
+        else {dispatch({ type: LOGIN_FAILED})
+        }
     }, [dispatch]);
-    return <BrowserRouter>
+    return <>
         <PassportAppBar />
         <Switch>
             <Route path="/login" exact>
@@ -40,28 +44,18 @@ function Navigation() {
             <Route path="/oauth/facebook" exact>
                 <FacebookCallbackPage/>
             </Route>
-            <PrivateRoute path="/home" exact>
-                <HomePage />
-                <BottomAppBar />
-            </PrivateRoute>
-            <PrivateRoute path="/passport" exact>
-                <PassportPage />
-                <BottomAppBar />
-            </PrivateRoute>
-        <PrivateRoute path="/search" exact>
-            <SearchPage />
-            <BottomAppBar />
-        </PrivateRoute>
-            <PrivateRoute path="/addtrip" exact>
-                <AddTripPage />
-                <BottomAppBar />
-            </PrivateRoute>
+            <PrivateRoute path="/home" component={HomePage} exact />
+            <PrivateRoute path="/passport" component={PassportPage} exact />
+        <PrivateRoute path="/search" component={SearchPage} exact />
+            <PrivateRoute path="/addtrip" component={AddTripPage} exact />
         </Switch>
-    </BrowserRouter>;
+        {location.pathname !== "/login" && <BottomAppBar  />}
+    </>;
 }
 
 function App() {
     return (
+        <BrowserRouter>
         <MuiThemeProvider theme={passportTheme}>
         <UserContextProvider>
             <TripProvider>
@@ -71,6 +65,7 @@ function App() {
             </TripProvider>
         </UserContextProvider>
     </MuiThemeProvider>
+        </BrowserRouter>
     );
 }
 
