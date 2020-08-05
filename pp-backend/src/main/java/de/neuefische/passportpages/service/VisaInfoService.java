@@ -23,12 +23,13 @@ public class VisaInfoService {
         return visaInfoMongoDb.findById(id);
     }
 
-    public Optional<VisaInfo> getRandomVisaInfo(String id){
+    public Optional<VisaInfo> getRandomVisaInfo(String randomId){
         Random randomVisaInfo = new Random();
         int idResult = randomVisaInfo.nextInt(195);
         idResult += 1;
-        id = Integer.toString(idResult);
-        return visaInfoMongoDb.findById(id);
+        randomId = Integer.toString(idResult);
+        return visaInfoMongoDb.findById(randomId);
+
 
     }
 
