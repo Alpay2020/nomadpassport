@@ -53,7 +53,7 @@ export default function HomePage() {
         </Box>
         <Box>
             <Card className={classes.card}>
-                <Typography variant="h6">Top destination of the day:</Typography>
+                <Typography variant="h6">If you need some inspiration, this is our team's top destination of the day:</Typography>
                 <Typography> {visaInfo.destination} </Typography>
             </Card>
         </Box>
