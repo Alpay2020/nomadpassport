@@ -1,10 +1,12 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import {UserDispatchContext, UserStateContext} from "../context/user/UserContext";
 import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
 import Box from "@material-ui/core/Box";
 import BottomAppBar from "../components/PassportAppBar/BottomAppBar";
+import {fetchRandomVisaInfo} from "../utils/visaInfo-utils";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles({
         root: {
@@ -26,7 +28,14 @@ const useStyles = makeStyles({
 export default function HomePage() {
     const classes = useStyles();
     const { userData } = useContext(UserStateContext);
+    const [visaInfo, setVisaInfo] = useState({})
 
+    useEffect(() => {
+        fetchRandomVisaInfo()
+            .then((data) => {
+                setVisaInfo(data)
+            })
+    }, [])
 
     return(
     <div className={classes.root}>
@@ -45,7 +54,7 @@ export default function HomePage() {
         <Box>
             <Card className={classes.card}>
                 <Typography variant="h6">Top destination of the day:</Typography>
-                <Typography>random destination...</Typography>
+                <Typography> {visaInfo.destination} </Typography>
             </Card>
         </Box>
 
