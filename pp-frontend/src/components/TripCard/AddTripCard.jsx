@@ -27,6 +27,7 @@ const useStyles = makeStyles({
         // color: '#c6b5b5',
         borderRadius: '10px',
         background: 'linear-gradient(145deg, #f2f6f9, #cbcfd2);',
+
     },
     bullet: {
         display: 'inline-block',
@@ -46,6 +47,9 @@ const useStyles = makeStyles({
     formControl: {
         margin: 1,
         minWidth: 120,
+        height : "20vh",
+        // direction : "column",
+        // justifyContent: "center",
     },
     selectEmpty: {
         marginTop: 2,
@@ -57,6 +61,10 @@ const useStyles = makeStyles({
         borderRadius: '56px',
         background: 'linear-gradient(145deg, #f2f6f9, #cbcfd2);',
     },
+    // form:{
+    //     direction : "column",
+    //     justifyContent: "center",
+    // }
 });
 
 
@@ -98,7 +106,7 @@ export default function AddTripCard() {
 
         <Card className={classes.root}>
             <CardContent>
-                <form onSubmit={handleSubmit}>
+                <form className={classes.formControl} onSubmit={handleSubmit}>
                         <Grid container justify="space-around">
                             <TextField
                                 id="Start date"
