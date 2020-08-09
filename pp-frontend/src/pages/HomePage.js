@@ -1,14 +1,12 @@
 import React, {useContext, useEffect, useState} from "react";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import {UserDispatchContext, UserStateContext} from "../context/user/UserContext";
+import {UserStateContext} from "../context/user/UserContext";
 import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
 import Box from "@material-ui/core/Box";
-import BottomAppBar from "../components/PassportAppBar/BottomAppBar";
 import {fetchRandomVisaInfo} from "../utils/visaInfo-utils";
-import Button from "@material-ui/core/Button";
 import {TripDispatchContext, TripStateContext} from "../context/trip/TripContext";
-import {fetchFutureTrips, fetchTrips} from "../context/trip/TripActions";
+import {fetchFutureTrips, fetchPastTrips, fetchTrips} from "../context/trip/TripActions";
 import TripCard from "../components/TripCard/TripCard";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
@@ -38,6 +36,12 @@ export default function HomePage() {
     useEffect(() => {
         if (!fetchStatus) {
             fetchFutureTrips(dispatch);
+        }
+    }, [fetchStatus, dispatch]);
+
+    useEffect(() => {
+        if (!fetchStatus) {
+            fetchPastTrips(dispatch);
         }
     }, [fetchStatus, dispatch]);
 
