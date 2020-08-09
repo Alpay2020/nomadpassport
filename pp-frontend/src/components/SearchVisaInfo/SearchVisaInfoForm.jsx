@@ -6,7 +6,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import {makeStyles} from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import {fetchVisaInfo} from "../../context/visaInfo/VisaInfoActions";
-import {VisaInfoDispatchContext, VisaInfoStateContext} from "../../context/visaInfo/VisaInfoContext";
+import {VisaInfoDispatchContext} from "../../context/visaInfo/VisaInfoContext";
 import Card from "@material-ui/core/Card";
 import Box from "@material-ui/core/Box";
 import {countryList} from "./countryList";
@@ -41,7 +41,6 @@ const useStyles = makeStyles({
 export default function SearchVisaInfoForm() {
 
     const dispatch = useContext(VisaInfoDispatchContext);
-    const visaInfo = useContext(VisaInfoStateContext);
     const classes = useStyles();
     const [citizenship, setCitizenship] = useState('');
     const [id, setId] = useState('');

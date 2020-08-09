@@ -17,7 +17,7 @@ const useStyles = makeStyles({
     card: {
 
         margin: 10,
-        padding: "20px", //Balken muss weg, wenn kein Inhalt...
+        padding: "20px",
         backgroundColor: '#e2e6e9',
         '&:hover': {
             backgroundColor: '#c0c4c6',
@@ -26,11 +26,6 @@ const useStyles = makeStyles({
         // color: '#c6b5b5',
         borderRadius: '10px',
         background: 'linear-gradient(145deg, #f2f6f9, #cbcfd2);',
-    },
-    resultBox: {
-        // justifyContent: "space-between",
-        // paddingTop: "40px",
-
     },
 });
 
@@ -57,7 +52,7 @@ export default function SearchPage() {
         <Box>
             <SearchVisaInfoForm />
         </Box>
-        <Box py={3} className={classes.resultBox}>
+        <Box py={3}>
             {fetchStatus === 'SUCCESS' && <Card className={classes.card}>
             {visaInfo.citizenship &&
             <Typography>

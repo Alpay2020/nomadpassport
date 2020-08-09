@@ -31,7 +31,7 @@ function TripCard({ trip }) {
     const classes = useStyles();
 
     return (
-        <Grid item xs={10} sm={6} lg={3}>
+        <Grid item xs={12} sm={10} lg={4}>
             <Card
                 className={classes.root}
             >

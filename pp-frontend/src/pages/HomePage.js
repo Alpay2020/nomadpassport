@@ -6,7 +6,7 @@ import Card from "@material-ui/core/Card";
 import Box from "@material-ui/core/Box";
 import {fetchRandomVisaInfo} from "../utils/visaInfo-utils";
 import {TripDispatchContext, TripStateContext} from "../context/trip/TripContext";
-import {fetchFutureTrips, fetchPastTrips, fetchTrips} from "../context/trip/TripActions";
+import {fetchFutureTrips, fetchPastTrips} from "../context/trip/TripActions";
 import TripCard from "../components/TripCard/TripCard";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
@@ -64,8 +64,9 @@ export default function HomePage() {
         </Box>
         <Box>
             <Card className={classes.card}>
-                <Typography variant="h6">If you need some inspiration, this is our team's top destination of the day:</Typography>
-                <Typography> {visaInfo.destination} </Typography>
+                <Typography variant="h6">Top destination of the day</Typography>
+                <Typography>If you need some inspiration we recommend this destination today:</Typography>
+                <Typography style={{fontWeight:"bold"}}> {visaInfo.destination} </Typography>
             </Card>
         </Box>
 
@@ -80,7 +81,7 @@ export default function HomePage() {
                             Fetch Trips failed
                         </Typography>
                     )}
-                <Typography variant="h6">Your next trip:</Typography>
+                <Typography variant="h6">Upcoming trips:</Typography>
                 <div>{futureTrips && futureTrips.map((trip) => (
                     <TripCard
                         key={trip.id}
