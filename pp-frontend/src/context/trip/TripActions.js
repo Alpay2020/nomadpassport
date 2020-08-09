@@ -6,6 +6,12 @@ export const FETCH_TRIPS_FAILED = 'FETCH_TRIPS_FAILED';
 export const ADD_TRIP = 'ADD_TRIP';
 export const ADD_TRIP_SUCCESS = 'ADD_TRIP_SUCCESS';
 export const ADD_TRIP_FAILED = 'ADD_TRIP_FAILED';
+export const ADD_FUTURE_TRIP = 'ADD_FUTURE_TRIP';
+export const ADD_FUTURE_TRIP_SUCCESS = 'ADD_FUTURE_TRIP_SUCCESS';
+export const ADD_FUTURE_TRIP_FAILED = 'ADD_FUTURE_TRIP_FAILED';
+export const ADD_PAST_TRIP = 'ADD_PAST_TRIP';
+export const ADD_PAST_TRIP_SUCCESS = 'ADD_PAST_TRIP_SUCCESS';
+export const ADD_PAST_TRIP_FAILED = 'ADD_PAST_TRIP_FAILED';
 export const DELETE_TRIP = 'DELETE_TRIP';
 export const DELETE_TRIP_SUCCESS = 'DELETE_TRIP_SUCCESS';
 export const DELETE_TRIP_FAILED = 'DELETE_TRIP_FAILED';
@@ -45,12 +51,12 @@ export async function fetchPastTrips(dispatch) {
 }
 
 export async function addTrip(dispatch, dateTripStart, dateTripEnd, destinationCountry) {
-    dispatch({ type: ADD_TRIP });
+    dispatch({ type: ADD_TRIP && ADD_FUTURE_TRIP });
     try {
         const trip = await putTrip(dateTripStart, dateTripEnd, destinationCountry);
-        dispatch({ type: ADD_TRIP_SUCCESS, payload: trip });
+        dispatch({ type: ADD_TRIP_SUCCESS && ADD_FUTURE_TRIP_SUCCESS && ADD_PAST_TRIP_SUCCESS, payload: trip });
     } catch (error) {
-        dispatch({ type: ADD_TRIP_FAILED, payload: error });
+        dispatch({ type: ADD_TRIP_FAILED && ADD_FUTURE_TRIP_FAILED && ADD_PAST_TRIP_FAILED, payload: error });
     }
 }
 

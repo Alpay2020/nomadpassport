@@ -68,15 +68,18 @@ export default function HomePage() {
                 <Typography> {visaInfo.destination} </Typography>
             </Card>
         </Box>
-            <div className={classes.root}>
-                {fetchStatus === 'PENDING' && <CircularProgress />}
-                {fetchStatus === 'FAILED' && (
-                    <Typography variant="body1" color="error" component="p">
-                        Fetch Trips failed
-                    </Typography>
-                )}
+
 
         <Box>
+
+            <Card className={classes.card}>
+                <div>
+                    {fetchStatus === 'PENDING' && <CircularProgress />}
+                    {fetchStatus === 'FAILED' && (
+                        <Typography variant="body1" color="error" component="p">
+                            Fetch Trips failed
+                        </Typography>
+                    )}
                 <Typography variant="h6">Your next trip:</Typography>
                 <div>{futureTrips && futureTrips.map((trip) => (
                     <TripCard
@@ -85,9 +88,11 @@ export default function HomePage() {
                         onDeleteSuccess={() => console.log('delete')}
                     />
                 ))}</div>
+                </div>
+            </Card>
 
         </Box>
-            </div>
+
     </div>
 
     )

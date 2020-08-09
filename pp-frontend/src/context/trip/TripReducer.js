@@ -12,6 +12,13 @@ import {
     FETCH_TRIPS,
     FETCH_TRIPS_FAILED,
     FETCH_TRIPS_SUCCESS,
+    ADD_FUTURE_TRIP_FAILED,
+    ADD_FUTURE_TRIP,
+    ADD_FUTURE_TRIP_SUCCESS,
+    ADD_PAST_TRIP_FAILED,
+    ADD_PAST_TRIP,
+    ADD_PAST_TRIP_SUCCESS,
+
 } from './TripActions';
 
 export default function TripReducer(state, action) {
@@ -44,12 +51,39 @@ export default function TripReducer(state, action) {
             };
         case ADD_TRIP_FAILED:
             return { ...state, addStatus: 'FAILED' };
+        case ADD_FUTURE_TRIP:
+            return { ...state, addStatus: 'PENDING' };
+        case ADD_FUTURE_TRIP_SUCCESS:
+            return {
+                ...state,
+                addStatus: 'SUCCESS',
+                futureTrips: [...state.futureTrips, action.payload],
+            };
+        case ADD_FUTURE_TRIP_FAILED:
+            return { ...state, addStatus: 'FAILED' };
+        case ADD_PAST_TRIP:
+            return { ...state, addStatus: 'PENDING' };
+        case ADD_PAST_TRIP_SUCCESS:
+            return {
+                ...state,
+                addStatus: 'SUCCESS',
+                pastTrips: [...state.pastTrips, action.payload],
+            };
+        case ADD_PAST_TRIP_FAILED:
+            return { ...state, addStatus: 'FAILED' };
         case DELETE_TRIP_SUCCESS:
             return {
                 ...state,
                 trips: state.trips.filter((trip) => {
                     return trip.id !== action.payload;
                 }),
+                futureTrips: state.futureTrips.filter((trip) => {
+                    return trip.id !== action.payload;
+                }),
+                pastTrips: state.pastTrips.filter((trip) => {
+                    return trip.id !== action.payload;
+                }),
+
             };
         default:
             return state;
