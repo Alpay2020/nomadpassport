@@ -16,14 +16,18 @@ const useStyles = makeStyles({
             height: '100%',
             padding: '20px 0 60px 0',
         },
-    card:{
-        margin: 10,
-        paddingTop: "20px",
-        backgroundColor: '#e2e6e9',
-        boxShadow:  '9px 9px 18px #c0c4c6, -9px -9px 18px #ffffff',
-        borderRadius: '10px',
-        background: 'linear-gradient(145deg, #f2f6f9, #cbcfd2);',
-    },
+        card:{
+            margin: 10,
+            paddingTop: "20px",
+            backgroundColor: '#e2e6e9',
+            boxShadow:  '9px 9px 18px #c0c4c6, -9px -9px 18px #ffffff',
+            borderRadius: '10px',
+            background: 'linear-gradient(145deg, #f2f6f9, #cbcfd2);',
+        },
+        title: {
+            flexGrow: 1,
+            fontFamily: "DomaineDisplay, Georgia, serif;"
+        },
     }
 )
 
@@ -58,13 +62,13 @@ export default function HomePage() {
     <div className={classes.root}>
         <Box>
         <Card className={classes.card}>
-        <Typography variant="h4">Welcome, {userData && userData.displayName}!</Typography>
+        <Typography className={classes.title} variant="h4">Welcome, {userData && userData.displayName}!</Typography>
         <Typography>Nomad Passport gives you the ability to get your destination's entry requirements with one click and helps you keep track of your trips.</Typography>
         </Card>
         </Box>
         <Box>
             <Card className={classes.card}>
-                <Typography variant="h6">Top destination of the day</Typography>
+                <Typography className={classes.title} variant="h6">Top destination of the day</Typography>
                 <Typography>If you need some inspiration we recommend this destination today:</Typography>
                 <Typography style={{fontWeight:"bold"}}> {visaInfo.destination} </Typography>
             </Card>
@@ -81,7 +85,7 @@ export default function HomePage() {
                             Fetch Trips failed
                         </Typography>
                     )}
-                <Typography variant="h6">Upcoming trips:</Typography>
+                <Typography className={classes.title} variant="h6">Upcoming trips:</Typography>
                 <div>{futureTrips && futureTrips.map((trip) => (
                     <TripCard
                         key={trip.id}

@@ -22,6 +22,10 @@ const useStyles = makeStyles({
         borderRadius: '10px',
         background: 'linear-gradient(145deg, #f2f6f9, #cbcfd2);',
     },
+    title: {
+        flexGrow: 1,
+        fontFamily: "DomaineDisplay, Georgia, serif;"
+    },
 });
 
 export default function PassportPage() {
@@ -52,7 +56,7 @@ export default function PassportPage() {
                             Fetch Trips failed
                         </Typography>
                     )}
-                <Typography variant="h6">Your next trips:</Typography>
+                <Typography className={classes.title} variant="h6">Your next trips:</Typography>
                 <div>{futureTrips.map((trip) => (
                     <TripCard
                         key={trip.id}
@@ -70,7 +74,7 @@ export default function PassportPage() {
                             Fetch Trips failed
                         </Typography>
                     )}
-                <Typography variant="h6">Your past trips:</Typography>
+                <Typography className={classes.title} variant="h6">Your past trips:</Typography>
                 <div>{pastTrips.map((trip) => (
                     <TripCard
                         key={trip.id}
