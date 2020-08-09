@@ -12,25 +12,25 @@ const useStyles = makeStyles({
     root: {
         backgroundColor: '#e2e6e9',
         height: '100%',
-        paddingTop: '20px',
+        padding: '20px 0 60px 0',
     },
     card: {
-
-        margin: 10,
-        padding: "20px", //Balken muss weg, wenn kein Inhalt...
+        margin: 20,
+        padding: "20px 8px 20px 8px",
         backgroundColor: '#e2e6e9',
-        '&:hover': {
-            backgroundColor: '#c0c4c6',
-        },
-        boxShadow:  '9px 9px 18px #c0c4c6, -9px -9px 18px #ffffff',
-        // color: '#c6b5b5',
+        boxShadow:  '9px 9px 11px #bcbfc1, -9px -9px 11px #ffffff',
         borderRadius: '10px',
         background: 'linear-gradient(145deg, #f2f6f9, #cbcfd2);',
     },
-    resultBox: {
-        // justifyContent: "space-between",
-        // paddingTop: "40px",
-
+    title: {
+        flexGrow: 1,
+        fontFamily: "DomaineDisplay, Georgia, serif;",
+        color: "#651E38",
+        fontWeight: "400",
+        paddingBottom: "5px"
+    },
+    box:{
+        padding: "5px 2px 5px 2px",
     },
 });
 
@@ -48,16 +48,22 @@ export default function SearchPage() {
 
     return(
         <div className={classes.root}>
-            {fetchStatus === 'PENDING' && <CircularProgress />}
-            {fetchStatus === 'FAILED' && (
-                <Typography variant="body1" color="error" component="p">
-                    Fetch VisaInfo failed
-                </Typography>
-            )}
-        <Box>
+        <Box className={classes.box}>
+            <Card className={classes.card}>
+            <Typography className={classes.title} variant="h4">Search</Typography>
+            <Typography>Find all relevant visa information about your destination. Select your citizenship and browse through all countries' entry requirements!</Typography>
             <SearchVisaInfoForm />
+            </Card>
         </Box>
-        <Box py={3} className={classes.resultBox}>
+    <div>
+
+        <Box className={classes.box}>
+            {/*{fetchStatus === 'PENDING' && <CircularProgress />}*/}
+            {/*{fetchStatus === 'FAILED' && (*/}
+            {/*    <Typography variant="body1" color="error" component="p">*/}
+            {/*        Fetch VisaInfo failed*/}
+            {/*    </Typography>*/}
+            {/*)}*/}
             {fetchStatus === 'SUCCESS' && <Card className={classes.card}>
             {visaInfo.citizenship &&
             <Typography>
@@ -86,6 +92,7 @@ export default function SearchPage() {
             </Card>}
         </Box>
         </div>
+            </div>
 
     )
 }

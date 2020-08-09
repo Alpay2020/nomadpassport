@@ -8,7 +8,7 @@ import logo from '../images/planet-earth.png';
 const useStyles = makeStyles({
 
     root:{
-        height: '100%',
+        height: '100vh',
         width : '100%',
         backgroundColor: '#651E38',
         margin : '0',
@@ -17,7 +17,6 @@ const useStyles = makeStyles({
 
     },
     login:{
-
         flexDirection : "column",
         justifyContent : "center",
         display : "flex",
@@ -30,7 +29,11 @@ const useStyles = makeStyles({
         justifyContent : "center",
         paddingBottom : "100px",
         paddingTop : "50px",
-
+    },
+    earth:{
+        boxShadow:  '9px 9px 11px #280c16, -9px -9px 11px #a2305a',
+        borderRadius: '100%',
+        background: 'linear-gradient(145deg, #6c203c, #5b1b32)',
     }
 
 
@@ -43,7 +46,7 @@ function LoginPage() {
         <>
             <div className={classes.root}>
         <Box className={classes.logo}>
-            <img src={logo} alt={"logo"} width={'200px'} height={'200px'} />
+            <img className={classes.earth} src={logo} alt={"logo"} width={'200px'} height={'200px'} />
             </Box>
             <Box className={classes.login}>
                 <div>

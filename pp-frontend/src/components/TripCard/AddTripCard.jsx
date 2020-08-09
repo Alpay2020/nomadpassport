@@ -5,9 +5,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
 import { addTrip } from '../../context/trip/TripActions';
 import {TripDispatchContext, TripStateContext,} from '../../context/trip/TripContext';
-import Grid from "@material-ui/core/Grid";
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import "date-fns";
@@ -20,15 +18,7 @@ import {countryList} from "../SearchVisaInfo/countryList";
 
 
 const useStyles = makeStyles({
-    root: {
-        minWidth: 275,
-        backgroundColor: '#e2e6e9',
-        boxShadow:  '9px 9px 18px #c0c4c6, -9px -9px 18px #ffffff',
-        // color: '#c6b5b5',
-        borderRadius: '10px',
-        background: 'linear-gradient(145deg, #f2f6f9, #cbcfd2);',
 
-    },
     bullet: {
         display: 'inline-block',
         margin: '0 2px',
@@ -41,30 +31,23 @@ const useStyles = makeStyles({
         marginBottom: 12,
     },
     textField: {
-
         width: 200,
     },
     formControl: {
         margin: 1,
         minWidth: 120,
         height : "20vh",
-        // direction : "column",
-        // justifyContent: "center",
     },
     selectEmpty: {
         marginTop: 2,
     },
     button: {
         backgroundColor: '#e2e6e9',
-        boxShadow:  '9px 9px 18px #c0c4c6, -9px -9px 18px #ffffff',
-        color: '#c6b5b5',
+        boxShadow:  '9px 9px 11px #bcbfc1, -9px -9px 11px #ffffff',
+        color: '#242323',
         borderRadius: '56px',
         background: 'linear-gradient(145deg, #f2f6f9, #cbcfd2);',
     },
-    // form:{
-    //     direction : "column",
-    //     justifyContent: "center",
-    // }
 });
 
 
@@ -81,7 +64,6 @@ export default function AddTripCard() {
     useEffect(() => {
         if (addStatus === 'SUCCESS') {
             setDateTripStart('') && setDateTripEnd('') && setDestinationCountry('');
-
         }
     }, [addStatus]);
 
@@ -90,7 +72,6 @@ export default function AddTripCard() {
     function handleSubmit() {
         addTrip(dispatch, dateTripStart, dateTripEnd, destinationCountry);
     }
-
     function handleDateTripStartChange(event) {
         setDateTripStart(event.target.value);
     }
@@ -103,11 +84,9 @@ export default function AddTripCard() {
 
 
     return (
-
-        <Card className={classes.root}>
+        <>
             <CardContent>
                 <form className={classes.formControl} onSubmit={handleSubmit}>
-                        <Grid container justify="space-around">
                             <TextField
                                 id="Start date"
                                 label="Start date"
@@ -130,7 +109,6 @@ export default function AddTripCard() {
                                     shrink: true,
                                 }}
                             />
-                        </Grid>
                     <FormControl className={classes.formControl}>
                         <InputLabel id="Destination">Destination</InputLabel>
                         <Select
@@ -152,13 +130,13 @@ export default function AddTripCard() {
             </CardContent>
             <CardActions>
                 <Button
-                    disabled={destinationCountry.length < 5}
+                    disabled={destinationCountry.length < 1}
                     onClick={handleSubmit}
                     className={classes.button}
                     >
                     Add
-            </Button>
+                </Button>
             </CardActions>
-        </Card>
+        </>
     );
 }

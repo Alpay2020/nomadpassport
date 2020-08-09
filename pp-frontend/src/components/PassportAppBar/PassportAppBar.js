@@ -10,7 +10,6 @@ import {
 } from '../../context/user/UserContext';
 import { LOGOUT } from '../../context/user/UserContextProvider';
 import { removeJWTToken } from '../../utils/jwt-utils';
-import {Link} from "react-router-dom";
 
 
 const useStyles = makeStyles(() => ({
