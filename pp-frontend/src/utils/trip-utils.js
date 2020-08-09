@@ -13,6 +13,32 @@ export async function fetchAllTrips() {
     }
     return await response.json();
 }
+export async function fetchAllFutureTrips() {
+    const token = getJWTToken();
+    const response = await fetch('/api/trips/future', {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+    if (response.status !== 200) {
+        throw new Error(response.statusText);
+    }
+    return await response.json();
+}
+export async function fetchAllPastTrips() {
+    const token = getJWTToken();
+    const response = await fetch('/api/trips/past', {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+    if (response.status !== 200) {
+        throw new Error(response.statusText);
+    }
+    return await response.json();
+}
 
 export function putTrip(dateTripStart, dateTripEnd, destinationCountry) {
     const token = getJWTToken();
