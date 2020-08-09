@@ -15,16 +15,21 @@ const useStyles = makeStyles({
         padding: '20px 0 60px 0',
     },
     card:{
-        margin: 10,
-        paddingTop: "20px",
+        margin: 20,
+        padding: "20px 8px 20px 8px",
         backgroundColor: '#e2e6e9',
-        boxShadow:  '9px 9px 18px #c0c4c6, -9px -9px 18px #ffffff',
+        boxShadow:  '9px 9px 11px #bcbfc1, -9px -9px 11px #ffffff',
         borderRadius: '10px',
         background: 'linear-gradient(145deg, #f2f6f9, #cbcfd2);',
     },
     title: {
         flexGrow: 1,
-        fontFamily: "DomaineDisplay, Georgia, serif;"
+        fontFamily: "DomaineDisplay, Georgia, serif;",
+        color: "#651E38",
+        fontWeight: "400",
+    },
+    box:{
+        padding: "5px 2px 5px 2px",
     },
 });
 
@@ -48,7 +53,7 @@ export default function PassportPage() {
 
     return (
         <div className={classes.root}>
-            <Box>
+            <Box className={classes.box}>
                 <Card className={classes.card}>
                     {fetchStatus === 'PENDING' && <CircularProgress />}
                     {fetchStatus === 'FAILED' && (
@@ -56,7 +61,7 @@ export default function PassportPage() {
                             Fetch Trips failed
                         </Typography>
                     )}
-                <Typography className={classes.title} variant="h6">Your next trips:</Typography>
+                <Typography className={classes.title} variant="h4">Your next trips:</Typography>
                 <div>{futureTrips.map((trip) => (
                     <TripCard
                         key={trip.id}
@@ -66,7 +71,7 @@ export default function PassportPage() {
                 ))}</div>
                 </Card>
             </Box>
-            <Box>
+            <Box className={classes.box}>
                 <Card className={classes.card}>
                     {fetchStatus === 'PENDING' && <CircularProgress />}
                     {fetchStatus === 'FAILED' && (
@@ -74,7 +79,7 @@ export default function PassportPage() {
                             Fetch Trips failed
                         </Typography>
                     )}
-                <Typography className={classes.title} variant="h6">Your past trips:</Typography>
+                <Typography className={classes.title} variant="h4">Your past trips:</Typography>
                 <div>{pastTrips.map((trip) => (
                     <TripCard
                         key={trip.id}

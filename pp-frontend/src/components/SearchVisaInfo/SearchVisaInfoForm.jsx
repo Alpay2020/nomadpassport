@@ -7,31 +7,18 @@ import {makeStyles} from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import {fetchVisaInfo} from "../../context/visaInfo/VisaInfoActions";
 import {VisaInfoDispatchContext} from "../../context/visaInfo/VisaInfoContext";
-import Card from "@material-ui/core/Card";
-import Box from "@material-ui/core/Box";
 import {countryList} from "./countryList";
+import CardContent from "@material-ui/core/CardContent";
+import CardActions from "@material-ui/core/CardActions";
 
 const useStyles = makeStyles({
     formControl: {
         margin: 1,
         minWidth: 120,
     },
-    flexy: {
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center"
-    },
-    card:{
-        margin: 10,
-        backgroundColor: '#e2e6e9',
-        boxShadow:  '9px 9px 18px #c0c4c6, -9px -9px 18px #ffffff',
-        color: '#c6b5b5',
-        borderRadius: '10px',
-        background: 'linear-gradient(145deg, #f2f6f9, #cbcfd2);',
-    },
     searchButton:{
         backgroundColor: '#e2e6e9',
-        boxShadow:  '9px 9px 18px #c0c4c6, -9px -9px 18px #ffffff',
+        boxShadow:  '9px 9px 11px #bcbfc1, -9px -9px 11px #ffffff',
         color: '#242323',
         borderRadius: '56px',
         background: 'linear-gradient(145deg, #f2f6f9, #cbcfd2);',
@@ -51,15 +38,13 @@ export default function SearchVisaInfoForm() {
     function handleIdChange(event) {
         setId(event.target.value);
     }
-    function handleSubmit(event) {
-        event.stopPropagation();
+    function handleSubmit() {
         fetchVisaInfo(dispatch, id);
     }
     return (
-        <Card className={classes.card}>
-        <form
-        >
-            <Box py={3} className={classes.flexy}>
+        <>
+        <CardContent>
+        <form>
             <FormControl className={classes.formControl}>
                 <InputLabel id="citizenship">Citizenship</InputLabel>
                 <Select
@@ -71,7 +56,6 @@ export default function SearchVisaInfoForm() {
                     {countryList.map((country)=><MenuItem key={country.id} value={country.label}>{country.label}</MenuItem>) }
                 </Select>
             </FormControl>
-
             <FormControl className={classes.formControl}>
                 <InputLabel id="destination">Destination</InputLabel>
                 <Select
@@ -83,6 +67,9 @@ export default function SearchVisaInfoForm() {
                     {countryList.map((country)=><MenuItem key={country.id} value={country.id}>{country.label}</MenuItem>) }
                 </Select>
             </FormControl>
+        </form>
+        </CardContent>
+            <CardActions>
             <Button
                 disabled={id.length < 1}
                 onClick={handleSubmit}
@@ -91,9 +78,8 @@ export default function SearchVisaInfoForm() {
             >
                 Search
             </Button>
-            </Box>
-        </form>
-        </Card>
+    </CardActions>
+    </>
 
     )
 }

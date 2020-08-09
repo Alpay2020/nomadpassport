@@ -16,7 +16,7 @@ const passportTheme = createMuiTheme({
         MuiButton: {
             text: {
                 backgroundColor: '#651E38',
-                boxShadow:  '9px 9px 18px #280c16, -9px -9px 18px #a2305a',
+                boxShadow:  '9px 9px 11px #280c16, -9px -9px 11px #a2305a',
                 color: '#c6b5b5',
                 borderRadius: '56px',
                 background: 'linear-gradient(145deg, #6c203c, #5b1b32)',
