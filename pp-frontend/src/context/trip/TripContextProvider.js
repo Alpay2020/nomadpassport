@@ -5,6 +5,8 @@ import TripReducer from './TripReducer';
 export default function TripProvider({ children }) {
     const [state, dispatch] = useReducer(TripReducer, {
         trips: [],
+        futureTrips: [],
+        pastTrips: [],
         fetchStatus: undefined,
     });
 
