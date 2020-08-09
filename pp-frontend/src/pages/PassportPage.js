@@ -23,7 +23,7 @@ export default function PassportPage() {
 
     useEffect(() => {
         if (!fetchStatus) {
-            fetchPastTrips(dispatch) && fetchFutureTrips(dispatch);
+            fetchFutureTrips(dispatch);
         }
     }, [fetchStatus, dispatch]);
 
@@ -43,7 +43,7 @@ export default function PassportPage() {
             )}
             <Box>
                 <Typography variant="h6">Your past trips:</Typography>
-                <div>{pastTrips && pastTrips.map((trip) => (
+                <div>{pastTrips.map((trip) => (
                     <TripCard
                         key={trip.id}
                         trip={trip}
@@ -54,7 +54,7 @@ export default function PassportPage() {
             </Box>
             <Box>
                 <Typography variant="h6">Your next trips:</Typography>
-                <div>{futureTrips && futureTrips.map((trip) => (
+                <div>{futureTrips.map((trip) => (
                     <TripCard
                         key={trip.id}
                         trip={trip}
