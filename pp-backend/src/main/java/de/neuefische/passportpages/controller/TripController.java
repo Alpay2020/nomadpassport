@@ -5,7 +5,7 @@ import de.neuefische.passportpages.service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
-import java.util.ArrayList;
+import java.security.Principal;
 
 
 @RestController
@@ -19,23 +19,23 @@ public class TripController {
         this.tripService = tripService;
     }
     @PutMapping
-    public Trip addTrip(@RequestBody @Valid Trip data){
-        return tripService.add(data.getDateTripStart(),data.getDateTripEnd(),data.getDestinationCountry());
+    public Trip addTrip(@RequestBody @Valid Trip data, Principal principal){
+        return tripService.add(data.getDateTripStart(),data.getDateTripEnd(),data.getDestinationCountry(), principal.getName());
     }
     @GetMapping
-    public Iterable<Trip> getTrips() {
-        return tripService.getAll();
+    public Iterable<Trip> getTripsByUser(Principal principal) {
+        return tripService.getAllByUser(principal.getName());
     }
     @DeleteMapping("{id}")
     public void deleteIdea(@PathVariable String id){
         tripService.deleteTrip(id);
     }
     @GetMapping("past")
-    public Iterable<Trip> getAllPastTrips(){
-        return tripService.getPastTrips();
+    public Iterable<Trip> getAllPastTrips(Principal principal){
+        return tripService.getPastTrips(principal.getName());
     }
     @GetMapping("future")
-    public Iterable<Trip> getAllFutureTrips(){
-        return tripService.getFutureTrips();
+    public Iterable<Trip> getAllFutureTrips(Principal principal){
+        return tripService.getFutureTrips(principal.getName());
     }
 }

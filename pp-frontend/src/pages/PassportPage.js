@@ -61,7 +61,7 @@ export default function PassportPage() {
                             Fetch Trips failed
                         </Typography>
                     )}
-                <Typography className={classes.title} variant="h4">Your next trips:</Typography>
+                <Typography className={classes.title} variant="h4">Upcoming trips:</Typography>
                 <div>{futureTrips.map((trip) => (
                     <TripCard
                         key={trip.id}
@@ -79,7 +79,7 @@ export default function PassportPage() {
                             Fetch Trips failed
                         </Typography>
                     )}
-                <Typography className={classes.title} variant="h4">Your past trips:</Typography>
+                <Typography className={classes.title} variant="h4">Past trips:</Typography>
                 <div>{pastTrips.map((trip) => (
                     <TripCard
                         key={trip.id}
