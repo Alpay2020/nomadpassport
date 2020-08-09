@@ -71,8 +71,8 @@ public class TripControllerTest {
         //GIVEN
         String token = loginUser();
         String url = "http://localhost:" + port + "/api/trips";
-        tripMongoDb.save(new Trip("1","2020-9-06", "2020-9-20", "country1"));
-        tripMongoDb.save(new Trip("2","9-10-2020", "18-10-2020", "country2"));
+        tripMongoDb.save(new Trip("1","2020-9-06", "2020-9-20", "country1","testuser"));
+        tripMongoDb.save(new Trip("2","9-10-2020", "18-10-2020", "country2", "testuser2"));
 
 
         //WHEN
@@ -85,8 +85,8 @@ public class TripControllerTest {
         assertEquals(response.getStatusCode(), HttpStatus.OK);
         Trip[] trips = response.getBody();
         assertEquals(trips.length, 2);
-        assertEquals(trips[0], new Trip("1","18-09-2020", "20-09-2020", "country1"));
-        assertEquals(trips[1], new Trip("2","09-10-2020", "18-10-2020", "country2"));
+        assertEquals(trips[0], new Trip("1","18-09-2020", "20-09-2020", "country1","testuser"));
+        assertEquals(trips[1], new Trip("2","09-10-2020", "18-10-2020", "country2","testuser2"));
     }
 
     @Test
@@ -96,7 +96,7 @@ public class TripControllerTest {
 
         when(idUtils.generateRandomId()).thenReturn("some-random-id");
 
-        Trip trip = new Trip("some-random-id","09-10-2020", "18-10-2020", "country2");
+        Trip trip = new Trip("some-random-id","09-10-2020", "18-10-2020", "country2","testuser2");
         String url = "http://localhost:" + port + "/api/trips";
 
         HttpHeaders headers = new HttpHeaders();
@@ -107,7 +107,7 @@ public class TripControllerTest {
         ResponseEntity<Trip> putResponse = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, Trip.class);
 
         // THEN
-        Trip expectedTrip = new Trip("some-random-id", "09-10-2020", "18-10-2020", "country2");
+        Trip expectedTrip = new Trip("some-random-id", "09-10-2020", "18-10-2020", "country2","testuser2");
         assertEquals(HttpStatus.OK, putResponse.getStatusCode());
         assertNotNull(putResponse.getBody());
         assertEquals(expectedTrip, putResponse.getBody());
@@ -122,8 +122,8 @@ public class TripControllerTest {
     public void deleteTrip(){
         //GIVEN
         String token = loginUser();
-        tripMongoDb.save(new Trip("1","18-09-2020", "20-09-2020", "country1"));
-        tripMongoDb.save(new Trip("2","09-10-2020", "18-10-2020", "country2"));
+        tripMongoDb.save(new Trip("1","18-09-2020", "20-09-2020", "country1","testuser"));
+        tripMongoDb.save(new Trip("2","09-10-2020", "18-10-2020", "country2","testuser2"));
 
         //WHEN
         String url = "http://localhost:" + port + "/api/trips/2";

@@ -14,10 +14,9 @@ public class Trip {
 
     @Id
     private String id;
-    //@Pattern(regexp = "^[0-9]{2}-[0-9]{2}-[0-9]{4}$", message = "date must be DD-MM-YYYY")
     private String dateTripStart;
-    //@Pattern(regexp = "^[0-9]{2}-[0-9]{2}-[0-9]{4}$", message = "date must be DD-MM-YYYY")
     private String dateTripEnd;
     private String destinationCountry;
+    private String user;
 
 }

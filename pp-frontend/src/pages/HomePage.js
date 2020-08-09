@@ -74,8 +74,8 @@ export default function HomePage() {
         </Box>
         <Box className={classes.box}>
             <Card className={classes.card}>
-                <Typography className={classes.title} variant="h4">Nomads' destination</Typography>
-                <Typography>If you need some inspiration we recommend <span style={{fontWeight:"bold"}}> {visaInfo.destination} </span> today.</Typography>
+                <Typography className={classes.title} variant="h4">New destination</Typography>
+                <Typography>If you need some inspiration, we recommend <span style={{fontWeight:"bold"}}> {visaInfo.destination} </span> today.</Typography>
             </Card>
         </Box>
 
