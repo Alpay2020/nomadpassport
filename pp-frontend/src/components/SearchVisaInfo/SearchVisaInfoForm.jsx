@@ -11,6 +11,7 @@ import {countryList} from "./countryList";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 
+
 const useStyles = makeStyles({
     formControl: {
         margin: 1,
@@ -38,9 +39,11 @@ export default function SearchVisaInfoForm() {
     function handleIdChange(event) {
         setId(event.target.value);
     }
+
     function handleSubmit() {
-        fetchVisaInfo(dispatch, id);
+            fetchVisaInfo(dispatch, id);
     }
+
     return (
         <>
         <CardContent>

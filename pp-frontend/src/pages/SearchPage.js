@@ -1,12 +1,13 @@
-import React, {useContext, useEffect} from "react";
+import React, {useContext, useState} from "react";
 import {Box} from "@material-ui/core";
 import SearchVisaInfoForm from "../components/SearchVisaInfo/SearchVisaInfoForm";
-import {VisaInfoDispatchContext, VisaInfoStateContext} from "../context/visaInfo/VisaInfoContext";
+import {VisaInfoStateContext} from "../context/visaInfo/VisaInfoContext";
 import Typography from "@material-ui/core/Typography";
-import {fetchVisaInfo} from "../context/visaInfo/VisaInfoActions";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Card from "@material-ui/core/Card";
+import {fetchCovid19Api} from "../utils/covid19Api-utils";
+import VirusIcon from '../components/images/virus.svg';
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles({
     root: {
@@ -32,19 +33,31 @@ const useStyles = makeStyles({
     box:{
         padding: "5px 2px 5px 2px",
     },
+    icon: {
+        width: '35px',
+        height: '35px',
+    },
+    searchButton:{
+        backgroundColor: '#e2e6e9',
+        boxShadow:  '9px 9px 11px #bcbfc1, -9px -9px 11px #ffffff',
+        color: '#242323',
+        borderRadius: '100%',
+        background: 'linear-gradient(145deg, #f2f6f9, #cbcfd2);',
+        marginTop: "5px"
+    }
 });
 
 export default function SearchPage() {
 
     const classes = useStyles();
     const { visaInfo, fetchStatus} = useContext(VisaInfoStateContext);
-    const dispatch = useContext(VisaInfoDispatchContext);
+    const [covid19Info, setCovid19Info] = useState();
 
-    useEffect(() => {
-        if (!fetchStatus) {
-            fetchVisaInfo(dispatch);
-        }
-    }, [fetchStatus, dispatch]);
+    function handleChange() {
+    (visaInfo.destination && fetchCovid19Api(visaInfo.destination).then((data) => {
+        setCovid19Info(data)
+    }))}
+    console.log(covid19Info)
 
     return(
         <div className={classes.root}>
@@ -52,18 +65,12 @@ export default function SearchPage() {
             <Card className={classes.card}>
             <Typography className={classes.title} variant="h4">Search</Typography>
             <Typography>Find all relevant visa information about your destination. Select your citizenship and browse through all countries' entry requirements!</Typography>
-            <SearchVisaInfoForm />
+            <SearchVisaInfoForm  />
             </Card>
         </Box>
     <div>
 
         <Box className={classes.box}>
-            {/*{fetchStatus === 'PENDING' && <CircularProgress />}*/}
-            {/*{fetchStatus === 'FAILED' && (*/}
-            {/*    <Typography variant="body1" color="error" component="p">*/}
-            {/*        Fetch VisaInfo failed*/}
-            {/*    </Typography>*/}
-            {/*)}*/}
             {fetchStatus === 'SUCCESS' && <Card className={classes.card}>
             {visaInfo.citizenship &&
             <Typography>
@@ -89,9 +96,21 @@ export default function SearchPage() {
             <Typography>
             Days you can stay with a visa <span style={{fontWeight:"bold"}}>{visaInfo.paidForDay}</span>
             </Typography>}
+                <Button className={classes.searchButton} onClick={handleChange}>
+                    <img alt={"virusIcon"} className={classes.icon} src={VirusIcon}/>
+                </Button>
             </Card>}
         </Box>
         </div>
+            <Box className={classes.box}>
+                {covid19Info &&
+                <Card className={classes.card}>
+                    {covid19Info &&
+                    <Typography>
+                        Active Covid-19 cases <span style={{fontWeight:"bold"}}>{covid19Info && covid19Info[0].Active}</span>
+                    </Typography>}
+                </Card>}
+            </Box>
             </div>
 
     )
