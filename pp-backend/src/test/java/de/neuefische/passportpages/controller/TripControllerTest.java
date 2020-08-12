@@ -84,7 +84,7 @@ public class TripControllerTest {
         //THEN
         assertEquals(response.getStatusCode(), HttpStatus.OK);
         Trip[] trips = response.getBody();
-        assertEquals(trips.length, 2);
+        assertEquals(trips.length, 0);
         assertEquals(trips[0], new Trip("1","18-09-2020", "20-09-2020", "country1","testuser"));
         assertEquals(trips[1], new Trip("2","09-10-2020", "18-10-2020", "country2","testuser2"));
     }
@@ -107,7 +107,7 @@ public class TripControllerTest {
         ResponseEntity<Trip> putResponse = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, Trip.class);
 
         // THEN
-        Trip expectedTrip = new Trip("some-random-id", "09-10-2020", "18-10-2020", "country2","testuser2");
+        Trip expectedTrip = new Trip("some-random-id", "09-10-2020", "18-10-2020", "country2","superUser");
         assertEquals(HttpStatus.OK, putResponse.getStatusCode());
         assertNotNull(putResponse.getBody());
         assertEquals(expectedTrip, putResponse.getBody());
