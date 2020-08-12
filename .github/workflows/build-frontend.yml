@@ -14,6 +14,6 @@ jobs:
           node-version: 14.x
       - name: run npm install and build
         run: |
-          cd frontend
+          cd pp-frontend
           npm install
           npm run build
