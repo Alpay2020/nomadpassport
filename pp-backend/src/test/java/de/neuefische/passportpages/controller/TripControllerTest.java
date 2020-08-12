@@ -71,8 +71,8 @@ public class TripControllerTest {
         //GIVEN
         String token = loginUser();
         String url = "http://localhost:" + port + "/api/trips";
-        tripMongoDb.save(new Trip("1","2020-9-06", "2020-9-20", "country1","testuser"));
-        tripMongoDb.save(new Trip("2","9-10-2020", "18-10-2020", "country2", "testuser2"));
+//        tripMongoDb.save(new Trip("1","18-09-2020", "20-09-2020", "country1","user1"));
+        tripMongoDb.save(new Trip("2","09-10-2020", "18-10-2020", "country2", "superUser"));
 
 
         //WHEN
@@ -84,9 +84,9 @@ public class TripControllerTest {
         //THEN
         assertEquals(response.getStatusCode(), HttpStatus.OK);
         Trip[] trips = response.getBody();
-        assertEquals(trips.length, 0);
-        assertEquals(trips[0], new Trip("1","18-09-2020", "20-09-2020", "country1","testuser"));
-        assertEquals(trips[1], new Trip("2","09-10-2020", "18-10-2020", "country2","testuser2"));
+        assertEquals(trips.length, 1);
+//        assertEquals(trips[0], new Trip("1","18-09-2020", "20-09-2020", "country1","user1"));
+        assertEquals(trips[0], new Trip("2","09-10-2020", "18-10-2020", "country2","superUser"));
     }
 
     @Test
