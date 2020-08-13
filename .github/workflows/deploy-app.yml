@@ -41,6 +41,10 @@ jobs:
         with:
           java-version: 14
       - name: Build with Maven
+        env:
+          FACEBOOK_CLIENT_ID: ${{ secrets.FACEBOOK_CLIENT_ID }}
+          FACEBOOK_CLIENT_SECRET: ${{ secrets.FACEBOOK_CLIENT_SECRET }}
+          FACEBOOK_REDIRECT_URL: ${{ secrets.FACEBOOK_REDIRECT_URL }}
         run: mvn -B package --file ./pp-backend/pom.xml
       - name: upload pp-backend.jar file
         uses: actions/upload-artifact@v2
