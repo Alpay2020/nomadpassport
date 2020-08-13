@@ -12,7 +12,7 @@ public class GithubAuthConfig {
     @Value("${oauth.github.client.secret}")
     private String clientSecret;
 
-    @Value("${oauth.github.redirecturl}")
+    @Value("${oauth.github.redirect.url}")
     private String redirectUrl;
 
 

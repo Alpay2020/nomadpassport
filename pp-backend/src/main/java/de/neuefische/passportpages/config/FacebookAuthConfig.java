@@ -12,7 +12,7 @@ public class FacebookAuthConfig {
     @Value("${oauth.facebook.client.secret}")
     private String clientSecret;
 
-    @Value("${oauth.facebook.redirecturl}")
+    @Value("${oauth.facebook.redirect.url}")
     private String redirectUrl;
 
 
