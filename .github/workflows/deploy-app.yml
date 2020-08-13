@@ -1,4 +1,4 @@
-name: Deploy nomad passport to heroku
+name: Deploy nomadpassport to heroku
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
 
 jobs:
   build-frontend:
-    name: build nomad passport react frontend
+    name: build nomadpassport react frontend
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -16,14 +16,14 @@ jobs:
           node-version: 14.x
       - name: run npm install and build
         run: |
-          cd frontend
+          cd pp-frontend
           npm install
           npm run build
       - name: upload frontend build artifacts
         uses: actions/upload-artifact@v2
         with:
           name: frontend-build
-          path: frontend/build/
+          path: pp-frontend/build/
 
   build-backend:
     name: build jar file
