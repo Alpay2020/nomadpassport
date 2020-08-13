@@ -43,7 +43,7 @@ const useStyles = makeStyles({
         color: '#242323',
         borderRadius: '100%',
         background: 'linear-gradient(145deg, #f2f6f9, #cbcfd2);',
-        marginTop: "5px"
+        margin: "10px 5px 0 5px"
     }
 });
 

@@ -42,10 +42,13 @@ jobs:
           java-version: 14
       - name: Build with Maven
         env:
-          JWT_SECRET: ${ secrets.JWT_SECRET }
-          FACEBOOK_CLIENT_ID: ${ secrets.FACEBOOK_CLIENT_ID }
-          FACEBOOK_CLIENT_SECRET: ${ secrets.FACEBOOK_CLIENT_SECRET }
-          FACEBOOK_REDIRECT_URL: ${ secrets.FACEBOOK_REDIRECT_URL }
+          AUTH_JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          OAUTH_FACEBOOK_CLIENT_ID: ${{ secrets.FACEBOOK_CLIENT_ID }}
+          OAUTH_FACEBOOK_CLIENT_SECRET: ${{ secrets.FACEBOOK_CLIENT_SECRET }}
+          OAUTH_FACEBOOK_REDIRECT_URL: ${{ secrets.FACEBOOK_REDIRECT_URL }}
+          OAUTH_GITHUB_CLIENT_ID: ${{ secrets.FANCY_CLIENT_ID }}
+          OAUTH_GITHUB_CLIENT_SECRET: ${{ secrets.FANCY_CLIENT_SECRET }}
+          OAUTH_GITHUB_REDIRECT_URL: ${{ secrets.FANCY_REDIRECT_URL }}
         run: mvn -B package --file ./pp-backend/pom.xml
       - name: upload pp-backend.jar file
         uses: actions/upload-artifact@v2
