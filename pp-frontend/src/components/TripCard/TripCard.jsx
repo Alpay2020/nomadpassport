@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
+import React, {useContext} from 'react';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { TripDispatchContext } from '../../context/trip/TripContext';
 import { removeTrip } from '../../context/trip/TripActions';
+
 
 
 function TripCard({ trip }) {

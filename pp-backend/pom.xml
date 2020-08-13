@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>de.neuefische</groupId>
-    <artifactId>passport-pages</artifactId>
+    <artifactId>pp-backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>passport-pages</name>
+    <name>pp-backend</name>
     <description>Final project</description>
 
     <properties>
