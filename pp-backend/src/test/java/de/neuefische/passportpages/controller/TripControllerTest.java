@@ -85,7 +85,6 @@ public class TripControllerTest {
         assertEquals(response.getStatusCode(), HttpStatus.OK);
         Trip[] trips = response.getBody();
         assertEquals(trips.length, 1);
-//        assertEquals(trips[0], new Trip("1","18-09-2020", "20-09-2020", "country1","user1"));
         assertEquals(trips[0], new Trip("2","09-10-2020", "18-10-2020", "country2","superUser"));
     }
 
