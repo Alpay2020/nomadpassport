@@ -56,7 +56,7 @@ public class FacebookAuthService {
         Optional<PassportUser> optionalUser = userDb.findById("facebook/" + userData.getId());
 
         if (optionalUser.isEmpty()) {
-            PassportUser user = new PassportUser("facebook/" + userData.getId(), null, userData.getName(), null, "user", UserSource.FACEBOOK);
+            PassportUser user = new PassportUser("facebook/" + userData.getId(), userData.getName(), null, "user", UserSource.FACEBOOK);
             userDb.save(user);
             return user;
         }
@@ -68,7 +68,6 @@ public class FacebookAuthService {
         }
 
         passportUser.setDisplayName(userData.getName());
-        passportUser.setAvatarUrl(null);
         userDb.save(passportUser);
         return passportUser;
     }

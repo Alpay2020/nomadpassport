@@ -56,7 +56,7 @@ public class GithubAuthService {
         Optional<PassportUser> optionalUser = userDb.findById("github/" + userData.getLogin());
 
         if (optionalUser.isEmpty()) {
-            PassportUser user = new PassportUser("github/" + userData.getLogin(), null, userData.getName(), null, "user", UserSource.GITHUB);
+            PassportUser user = new PassportUser("github/" + userData.getLogin(),  userData.getName(), null, "user", UserSource.GITHUB);
             userDb.save(user);
             return user;
         }
@@ -68,7 +68,6 @@ public class GithubAuthService {
         }
 
         passportUser.setDisplayName(userData.getName());
-        passportUser.setAvatarUrl(null);
         userDb.save(passportUser);
         return passportUser;
     }
