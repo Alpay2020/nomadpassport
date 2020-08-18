@@ -57,7 +57,7 @@ public class TripControllerTest {
 
     private String loginUser() {
         String savePassword = "savePassword";
-        PassportUser user = new PassportUser("superUser", encoder.encode(savePassword),"admin", null,null, UserSource.CUSTOM);
+        PassportUser user = new PassportUser("superUser", encoder.encode(savePassword),"admin",null, UserSource.CUSTOM);
         userDb.save(user);
 
         String loginUrl = "http://localhost:" + port + "/auth/login";
